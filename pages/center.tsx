@@ -3,7 +3,7 @@
 // alignItems for cross-axis
 // conflict Flex overflow and justifyContent cause missing items   
 
-import { Box, Flex, Heading, VStack, FlexProps } from "@chakra-ui/react";
+import { Box, Flex, VStack, FlexProps } from '@chakra-ui/react';
 
 
 interface ChatBubbleProp extends FlexProps{
