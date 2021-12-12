@@ -212,6 +212,7 @@ const LayoutTest = ()  => {
       >
         <Flex height={'58'} alignItems='center' mx='8'>
           <Text
+            display={{ base: 'none', md:'flex' }}
             fontSize={'2xl'}
             fontFamily='M PLUS Rounded 1c", sans-serif'
             fontWeight='bold'
@@ -244,6 +245,7 @@ const LayoutTest = ()  => {
           </IconButton>
           <Box pr={4} pl={4} display={ isOpen ? 'none' : 'flex' }>
             <Text
+              display={{ base: 'none', md:'flex' }}
               fontSize={'2xl'}
               fontFamily='M PLUS Rounded 1c", sans-serif'
               fontWeight='bold'
@@ -251,7 +253,7 @@ const LayoutTest = ()  => {
               Entest
             </Text>
           </Box>
-          <InputGroup display={{ base: 'none', md: 'flex' }}>
+          <InputGroup display={{ base: 'flex', md: 'flex' }}>
             <InputLeftElement
               pointerEvents='none'
             >
