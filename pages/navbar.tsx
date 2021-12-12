@@ -1,5 +1,5 @@
 import { ReactNode   } from 'react';
-import { Avatar, Box, Flex, HStack, IconButton, Link, Menu, MenuButton, Stack, useDisclosure } from '@chakra-ui/react';
+import { Avatar, Box, Flex, HStack, IconButton, Link, Menu, MenuButton, Stack, useDisclosure, Text} from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 
 
@@ -21,7 +21,7 @@ const Navbar = () => {
   const {isOpen, onOpen, onClose} = useDisclosure();  
   return (
     <>
-      <Box bg='gray.200' width='100%'>
+      <Box bg='gray.200' width='100%' px={4}>
         <Flex alignItems='center' h={16} justifyContent='space-between'>
           <IconButton
             display={{ md: 'none' }}
@@ -54,11 +54,23 @@ const Navbar = () => {
           </Flex>
         </Flex>
         {isOpen ? (
-          <Box>
+          <Box pb={4} display={{ md: 'none' }}>
             <Stack>
               {['Dashboard','Projects','Team'].map((name,index)=>{
                 return (
-                  <NavLink key={index}>{name}</NavLink>
+                  <Flex 
+                    py={2}
+                    as={Link}
+                    href={'#'}
+                    justify={'space-between'}
+                    align={'center'}
+                    _hover={{textDecoration:'none'}}
+                    key={index}
+                  >
+                    <Text fontWeight={600} color={'gray.600'}>
+                      {name}
+                    </Text>
+                  </Flex>
                 )
               })}
             </Stack>
