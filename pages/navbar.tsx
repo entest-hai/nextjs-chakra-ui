@@ -1,9 +1,9 @@
 import { ReactNode   } from 'react';
-import { Avatar, Box, Flex, HStack, IconButton, Link, Menu, MenuButton, Stack, useDisclosure, Text, Container, Heading} from '@chakra-ui/react';
+import { Avatar, Box, Flex, HStack, IconButton, Link, Menu, MenuButton, Stack, useDisclosure, Text, Container, Button} from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 
 
-const NavLink = ( { children } : { children: ReactNode }) => {
+const _NavLink = ( { children } : { children: ReactNode }) => {
   return (
     <Link
       px={2}
@@ -16,6 +16,15 @@ const NavLink = ( { children } : { children: ReactNode }) => {
     </Link>
   );
 }
+
+const NavItem = ( { children } : { children: ReactNode }) => {
+  return (
+    <Button variant='ghost' colorScheme='teal'>
+      {children}
+    </Button>
+  ); 
+}
+
 
 const Navbar = () => {
   const {isOpen, onOpen, onClose} = useDisclosure();  
@@ -32,8 +41,18 @@ const Navbar = () => {
               onClick={isOpen ? onClose : onOpen}
             >
             </IconButton>
-            <HStack spacing={8} alignItems='center'>
-              <Box>Logo</Box>
+            <HStack spacing={12} alignItems='center'>
+              <Box pr={4}>
+                <Text
+                  fontSize={'2xl'}
+                  fontFamily='M PLUS Rounded 1c", sans-serif'
+                  fontWeight='bold'
+                >
+                  Entest
+                </Text>
+              </Box>
+            </HStack>
+            <HStack spacing={8}>
               <HStack 
                 spacing={4} 
                 as='nav' 
@@ -41,18 +60,16 @@ const Navbar = () => {
               >
                 {['Dashboard','Projects','Team'].map((name,index) => {
                   return (
-                    <NavLink key={index}>{name}</NavLink> 
+                    <NavItem key={index}>{name}</NavItem> 
                   );
                 })}
               </HStack>
-            </HStack>
-            <Flex>
               <Menu>
                 <MenuButton>
                   <Avatar size={'sm'}></Avatar>
                 </MenuButton>
               </Menu>
-            </Flex>
+            </HStack>
           </Flex>
           {isOpen ? (
             <Box pb={4} display={{ md: 'none' }}>
