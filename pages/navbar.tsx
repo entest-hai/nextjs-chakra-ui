@@ -1,3 +1,6 @@
+// 12 DEC 2021 TRAN MINH HAI 
+// navbar with search and responsive 
+//
 import { ReactNode   } from 'react';
 import { Input, 
   Avatar, 
@@ -76,7 +79,6 @@ const Navbar = () => {
                   isFullWidth={true}
                   size='md'
                   bg='white'
-                  display={{ base: 'none', md: 'flex' }}
                   minH={10} 
                   borderColor='blue.200'
                   borderWidth='thin'
