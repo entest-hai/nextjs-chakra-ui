@@ -1,5 +1,5 @@
 import { ReactNode   } from 'react';
-import { Avatar, Box, Flex, HStack, IconButton, Link, Menu, MenuButton, Stack, useDisclosure, Text, Container} from '@chakra-ui/react';
+import { Avatar, Box, Flex, HStack, IconButton, Link, Menu, MenuButton, Stack, useDisclosure, Text, Container, Heading} from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 
 
@@ -83,4 +83,16 @@ const Navbar = () => {
   );
 }
 
-export default Navbar; 
+
+const LayoutNav = () => {
+  return (
+    <Flex width='100%' flexDirection='column' as={'main'}>
+      <Navbar></Navbar>
+      <Container maxWidth={'container.lg'}>
+        content here 
+      </Container>
+    </Flex>
+  ); 
+}
+
+export default LayoutNav; 
