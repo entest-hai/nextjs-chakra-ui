@@ -65,15 +65,16 @@ const Navbar = () => {
                 </Text>
               </Box>
               <Input
+                minWidth={{ lg: 400, xl: 500 }}
+                bg='white'
                 display={{ base: 'none', md: 'flex' }}
-                variant='filled' 
-                mt={2} minH={10} 
+                mt={2} 
+                minH={10} 
                 borderColor='blue.200'
-                borderWidth='medium'
+                borderWidth='thin'
                 focusBorderColor='blue.500'
                 placeholder='Search' 
               />
-
             </HStack>
             <HStack spacing={8}>
               <HStack 
