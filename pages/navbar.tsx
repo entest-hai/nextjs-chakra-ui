@@ -48,7 +48,7 @@ const Navbar = () => {
           <Flex alignItems='center' h={16} justifyContent='space-between'>
             <IconButton
               display={{ md: 'none' }}
-              size={'md'}
+              size={'lg'}
               icon={ isOpen ? <CloseIcon></CloseIcon> : <HamburgerIcon></HamburgerIcon>}
               aria-label='Open Menu'
               onClick={isOpen ? onClose : onOpen}
