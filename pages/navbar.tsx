@@ -1,5 +1,18 @@
 import { ReactNode   } from 'react';
-import { Avatar, Box, Flex, HStack, IconButton, Link, Menu, MenuButton, Stack, useDisclosure, Text, Container, Button} from '@chakra-ui/react';
+import { Input, 
+  Avatar, 
+  Box, 
+  Flex, 
+  HStack, 
+  IconButton, 
+  Link, 
+  Menu, 
+  MenuButton, 
+  Stack, 
+  useDisclosure, 
+  Text, 
+  Container, 
+  Button} from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 
 
@@ -41,7 +54,7 @@ const Navbar = () => {
               onClick={isOpen ? onClose : onOpen}
             >
             </IconButton>
-            <HStack spacing={12} alignItems='center'>
+            <HStack spacing={4} alignItems='center'>
               <Box pr={4}>
                 <Text
                   fontSize={'2xl'}
@@ -51,6 +64,16 @@ const Navbar = () => {
                   Entest
                 </Text>
               </Box>
+              <Input
+                display={{ base: 'none', md: 'flex' }}
+                variant='filled' 
+                mt={2} minH={10} 
+                borderColor='blue.200'
+                borderWidth='medium'
+                focusBorderColor='blue.500'
+                placeholder='Search' 
+              />
+
             </HStack>
             <HStack spacing={8}>
               <HStack 
