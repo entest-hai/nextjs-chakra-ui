@@ -12,8 +12,10 @@ import { Input,
   useDisclosure, 
   Text, 
   Container, 
-  Button} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
+  Button,
+  InputGroup,
+  InputLeftElement} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon, SearchIcon} from '@chakra-ui/icons';
 
 
 const _NavLink = ( { children } : { children: ReactNode }) => {
@@ -64,18 +66,24 @@ const Navbar = () => {
                   Entest
                 </Text>
               </Box>
-              <Input
-                isFullWidth={true}
-                size='md'
-                bg='white'
-                display={{ base: 'none', md: 'flex' }}
-                mt={2} 
-                minH={10} 
-                borderColor='blue.200'
-                borderWidth='thin'
-                focusBorderColor='blue.500'
-                placeholder='Search' 
-              />
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents='none'
+                >
+                  {<SearchIcon></SearchIcon>}
+                </InputLeftElement>
+                <Input
+                  isFullWidth={true}
+                  size='md'
+                  bg='white'
+                  display={{ base: 'none', md: 'flex' }}
+                  minH={10} 
+                  borderColor='blue.200'
+                  borderWidth='thin'
+                  focusBorderColor='blue.500'
+                  placeholder='Search' 
+                />
+              </InputGroup>
             </HStack>
             <HStack spacing={4} ml={2}>
               <HStack 
