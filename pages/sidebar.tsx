@@ -5,7 +5,6 @@ import { Flex, Text, Icon, FlexProps, Link, Spacer, IconButton } from '@chakra-u
 import { useState } from 'react';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
-import { FiMenu } from 'react-icons/fi';
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'; 
 import {
   FiHome, 
@@ -27,19 +26,6 @@ const LinkItems: Array<LinkItemsProps> = [
   { name: 'Favourite', icon: FiStar }, 
   { name: 'Settings', icon: FiSettings }
 ]
-
-const Sidebar = () => {
-  return (
-    <Flex 
-      bg='tomato' 
-      height='100vh' 
-      width={60} 
-      display={{ base: 'none', md: 'block' }}
-    >
-      <Flex flexDirection='row' justifyContent='flex-end'></Flex>
-    </Flex>
-  );
-}
 
 interface NavItemProps extends FlexProps {
   icon: IconType; 
@@ -67,6 +53,36 @@ const NavItem = ({ icon, children, ... rest }: NavItemProps) => {
     </Link>
   ); 
 }
+
+const SSidebar = () => {
+
+  const [showSidebar, _setShowSidebar] = useState(true)
+  
+  return (
+    <Flex>
+      <Flex display = {{ base: 'none', md: 'block' }}>
+        <Flex 
+          bg='gray.100'
+          height='100vh' 
+          width={60} 
+          display={ showSidebar ? 'block' : 'none' }
+        >
+          <Flex h="20" alignItems='center' mx='8'>
+            <Text fontSize={'2xl'} fontFamily='monospace' fontWeight='bold'>
+              Entest
+            </Text>
+          </Flex>
+          { LinkItems.map(( item, index ) => {
+            return (
+              <NavItem key={index} icon={item.icon}>{item.name}</NavItem>
+            ); 
+          }) }
+        </Flex>
+      </Flex>      
+    </Flex>
+  );
+}
+
 
 const HSidebar = () => {
   const [showSidebar, setShowSidebar] = useState(false)
@@ -114,7 +130,7 @@ const HSidebar = () => {
 const Layout = () => {
   return (
     <Flex width='100%' height='100vh'>
-      <Sidebar></Sidebar>
+      <SSidebar></SSidebar>
       <HSidebar></HSidebar>
     </Flex>
   ); 
