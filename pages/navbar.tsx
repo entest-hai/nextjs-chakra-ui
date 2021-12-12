@@ -54,7 +54,7 @@ const Navbar = () => {
               onClick={isOpen ? onClose : onOpen}
             >
             </IconButton>
-            <HStack spacing={4} alignItems='center'>
+            <HStack spacing={2} alignItems='center' flex={'1'}>
               <Box pr={4}>
                 <Text
                   fontSize={'2xl'}
@@ -65,7 +65,8 @@ const Navbar = () => {
                 </Text>
               </Box>
               <Input
-                minWidth={{ lg: 400, xl: 500 }}
+                isFullWidth={true}
+                size='md'
                 bg='white'
                 display={{ base: 'none', md: 'flex' }}
                 mt={2} 
@@ -76,7 +77,7 @@ const Navbar = () => {
                 placeholder='Search' 
               />
             </HStack>
-            <HStack spacing={8}>
+            <HStack spacing={4} ml={2}>
               <HStack 
                 spacing={4} 
                 as='nav' 
