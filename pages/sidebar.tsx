@@ -1,7 +1,7 @@
 // 11 DEC 2021 TRAN MINH HAI 
 // refactor sidebar and hsidebar 
 //
-import { Flex, Text, Icon, FlexProps, Link, Spacer, IconButton } from '@chakra-ui/react';
+import { Flex, Text, Icon, FlexProps, Link, Spacer, IconButton} from '@chakra-ui/react';
 import { useState } from 'react';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
@@ -11,7 +11,8 @@ import {
   FiTrendingUp, 
   FiCompass, 
   FiSettings, 
-  FiStar
+  FiStar,
+  FiMenu
 } from 'react-icons/fi'; 
 
 interface LinkItemsProps {
@@ -92,7 +93,7 @@ const HSidebar = () => {
         <Flex 
           bg='gray.100'
           height='100vh' 
-          width={60} 
+          width={60}
           display={ showSidebar ? 'block' : 'none' }
         >
           <Flex h="20" alignItems='center' mx='8'>
@@ -127,11 +128,64 @@ const HSidebar = () => {
   ); 
 }
 
-const Layout = () => {
+const LayoutNav = () => {
   return (
     <Flex width='100%' height='100vh'>
       <SSidebar></SSidebar>
       <HSidebar></HSidebar>
+    </Flex>
+  ); 
+}
+
+
+const Layout = () => {
+
+  const [showSidebar, setShowSidebar] = useState(false)
+
+  return (
+    <Flex flexDirection='row'>
+      <Flex display = { showSidebar ? 'block' : 'none' }>
+        <Flex 
+          bg='gray.100'
+          height='100vh' 
+          width={60} 
+          display={ showSidebar ? 'block' : 'none' }
+        >
+          <Flex height={'58'} alignItems='center' mx='8'>
+            <Text fontSize={'2xl'} fontFamily='monospace' fontWeight='bold'>
+              Entest
+            </Text>
+            <Spacer></Spacer>
+            <IconButton
+              aria-label='die sidebar'
+              icon={<AiOutlineMenuFold fontSize={26}></AiOutlineMenuFold>}
+              onClick={ () => { setShowSidebar(!showSidebar) } }
+            >
+            </IconButton>
+          </Flex>
+          { LinkItems.map(( item, index ) => {
+            return (
+              <NavItem key={index} icon={item.icon}>{item.name}</NavItem>
+            ); 
+          }) }
+        </Flex>
+      </Flex>      
+      <Flex bg='tomato' width='100%'height={'58'} align='center'>
+        <IconButton
+          icon={<FiMenu fontSize={24}></FiMenu>}
+          ml={5}
+          aria-label='hide sidebar'
+          display={ showSidebar ? 'none' : 'flex' }
+          onClick={() => { setShowSidebar(!showSidebar) }}
+        >
+        </IconButton>
+        <Flex width='100%' align='center' justifyContent='center'>
+          <Text m={4} fontSize={20} fontWeight='bold' fontFamily='monospace'>Home</Text> 
+          <Text m={4} fontSize={20} fontWeight='bold' fontFamily='monospace'>Practice</Text> 
+          <Text m={4} fontSize={20} fontWeight='bold' fontFamily='monospace'>Contribute</Text> 
+          <Text m={4} fontSize={20} fontWeight='bold' fontFamily='monospace'>Register</Text> 
+        </Flex>
+      </Flex>
     </Flex>
   ); 
 }
