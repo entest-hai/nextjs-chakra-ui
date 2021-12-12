@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <Box width='100%' bg='gray.100'>
       <Container maxWidth={'container.lg'}>
-        <Box width='100%' px={4}>
+        <Box width='100%' px={0}>
           <Flex alignItems='center' h={16} justifyContent='space-between'>
             <IconButton
               display={{ md: 'none' }}
@@ -55,7 +55,7 @@ const Navbar = () => {
             >
             </IconButton>
             <HStack spacing={2} alignItems='center' flex={'1'}>
-              <Box pr={4}>
+              <Box pr={4} pl={4}>
                 <Text
                   fontSize={'2xl'}
                   fontFamily='M PLUS Rounded 1c", sans-serif'
