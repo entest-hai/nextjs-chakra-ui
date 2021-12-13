@@ -1,23 +1,25 @@
 {
-    "root": true,
-    "extends": "next",
-    "rules": {
-      "quotes":[
-        "error",
-        "single"
-      ],
-      "indent":[
-        "error",
-        2
-      ],
-      "no-unused-vars": [
-        "error",
-        {
-          "argsIgnorePattern": "^_",
-          "varsIgnorePattern": "^_"
-        }
-      ],
-      "react/display-name": 0
-    }
+  "root": true,
+  "extends": "next",
+  "rules": {
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": [
+          "^_",
+          "colorMode"
+        ]
+      }
+    ],
+    "react/display-name": 0
   }
-
+}

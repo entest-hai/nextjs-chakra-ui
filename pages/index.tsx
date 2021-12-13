@@ -4,7 +4,8 @@
 // createIcon: https://chakra-ui.com/docs/media-and-icons/icon#using-the-createicon-function 
 //
 
-import {Text, 
+import {Text,
+  Flex,
   Container, 
   Heading, 
   Stack, 
@@ -13,7 +14,7 @@ import {Text,
   Icon, 
   useColorModeValue, 
   createIcon} from '@chakra-ui/react';
-
+import { Illustration } from './illustration';
 
 const Arrow = createIcon({
   displayName: 'Arrow',
@@ -97,6 +98,13 @@ const Home = () => {
             </Text>
           </Box>
         </Stack>
+        <Flex width='full'>
+          <Illustration
+            height={{ sm: '24rem', lg: '28rem' }}
+            mt={{ base: 12, sm: 16 }}
+          >
+          </Illustration>
+        </Flex>
       </Stack>
     </Container>
   ); 

@@ -3,7 +3,8 @@
 //
 import { ReactNode   } from 'react';
 import { Input, 
-  Avatar, 
+  Avatar,
+  useColorMode,
   Box, 
   Flex, 
   HStack, 
@@ -17,8 +18,9 @@ import { Input,
   Container, 
   Button,
   InputGroup,
-  InputLeftElement} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, SearchIcon} from '@chakra-ui/icons';
+  InputLeftElement,
+  useColorModeValue} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon, SearchIcon, MoonIcon, SunIcon} from '@chakra-ui/icons';
 
 
 const _NavLink = ( { children } : { children: ReactNode }) => {
@@ -45,9 +47,16 @@ const NavItem = ( { children } : { children: ReactNode }) => {
 
 
 const Navbar = () => {
+
+  const { colorMode, toggleColorMode } = useColorMode()
   const {isOpen, onOpen, onClose} = useDisclosure();  
   return (
-    <Box width='100%' bg='gray.100'>
+    <Box 
+      width='100%' 
+      bg={ useColorModeValue('white', 'gray.700') }
+      borderBottomWidth={2}
+      borderColor={ useColorModeValue('gray.300', 'gray.900' ) }
+    >
       <Container maxWidth={'container.lg'}>
         <Box width='100%' px={0}>
           <Flex alignItems='center' h={16} justifyContent='space-between'>
@@ -99,6 +108,13 @@ const Navbar = () => {
                   );
                 })}
               </HStack>
+              <IconButton
+                bg={useColorModeValue('white', 'gray.700')}
+                aria-label={'toggle theme'}
+                icon={colorMode === 'light' ?  <MoonIcon></MoonIcon> : <SunIcon></SunIcon>}
+                onClick={toggleColorMode}
+              >
+              </IconButton>
               <Menu>
                 <MenuButton>
                   <Avatar size={'sm'}></Avatar>

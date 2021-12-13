@@ -1,15 +1,15 @@
 // 07 DEC 2021 Hai Tran 
 // Setup nextjs, chakra-ui, typescript 
 import {Button, 
-Flex, 
-Heading, 
-Input, 
-useColorMode, 
-useColorModeValue} from '@chakra-ui/react'; 
+  Flex, 
+  Heading, 
+  Input, 
+  useColorMode, 
+  useColorModeValue} from '@chakra-ui/react'; 
 
 const Home = () => {
 
-  const {colorMode, toggleColorMode} = useColorMode()
+  const { colorMode, toggleColorMode} = useColorMode() 
   const formBackground = useColorModeValue('gray.100', 'gray.700')
 
   return (
@@ -64,3 +64,4 @@ const Home = () => {
 }
 
 export default Home; 
+
