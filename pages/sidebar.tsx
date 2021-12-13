@@ -3,12 +3,30 @@
 // 12 DEC 2021 TRAN MINH HAI 
 // combine navbar and sidebar 
 import { ReactNode } from 'react';
-import { Flex, Text, Avatar,Button, Menu, MenuButton, HStack, Box, Icon, FlexProps, Link, Spacer, IconButton, useDisclosure, Input, InputGroup, InputLeftElement} from '@chakra-ui/react';
+import { Flex, 
+ Text, 
+ Avatar, 
+Button, 
+ Menu, 
+ MenuButton, 
+ HStack, 
+ Box, 
+ Icon, 
+ FlexProps, 
+ Link, 
+ Spacer, 
+ IconButton, 
+ useDisclosure, 
+ Input, 
+ InputGroup, 
+ InputLeftElement,
+ useColorMode,
+ useColorModeValue} from '@chakra-ui/react';
 import { useState } from 'react';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'; 
-import { SearchIcon } from '@chakra-ui/icons';
+import { SearchIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 import {
   FiHome, 
@@ -199,12 +217,13 @@ const Layout = () => {
 
 const LayoutTest = ()  => {
 
-  const {isOpen, onOpen, onClose} = useDisclosure(); 
+  const {isOpen, onOpen, onClose} = useDisclosure();
+  const {colorMode, toggleColorMode} = useColorMode();
 
   return (
     <Flex flexDirection='row'>
       <Flex 
-        bg='gray.100' 
+        bg={useColorModeValue('white', 'gray.800')}
         height='100vh' 
         width={60} 
         flexDirection='column' 
@@ -232,13 +251,19 @@ const LayoutTest = ()  => {
           ); 
         }) }
       </Flex>
-      <Flex bg='gray.100' height={61} width='100%' align='center' justifyContent='space-between'>
+      <Flex 
+        bg={useColorModeValue('white', 'gray.800')} 
+        height={61} 
+        width='100%' 
+        align='center' 
+        justifyContent='space-between'>
         <HStack spacing={2} alignItems='center' flex={'1'} maxW={'600'}>
           <IconButton
+            bg={useColorModeValue('white', 'gray.800')}
             ml={0}
             display={isOpen ? 'none' : 'flex'}
             aria-label='hide sidebar'
-            icon={<AiOutlineMenuUnfold fontSize={26}></AiOutlineMenuUnfold>}
+            icon={<AiOutlineMenuUnfold fontSize={24}></AiOutlineMenuUnfold>}
             onClick={onOpen}
           >
           </IconButton>
@@ -287,6 +312,13 @@ const LayoutTest = ()  => {
               <Avatar size={'sm'}></Avatar>
             </MenuButton>
           </Menu>
+          <IconButton
+            onClick={toggleColorMode}
+            bg={useColorModeValue('white', 'gray.800')}
+            aria-label='toggle theme'
+            icon={colorMode === 'light' ?   <MoonIcon></MoonIcon> : <SunIcon></SunIcon>}
+          >
+          </IconButton>
         </HStack>
       </Flex>
     </Flex>
