@@ -26,8 +26,8 @@ import { useState } from 'react';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'; 
-import { SearchIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-
+import { SearchIcon, SunIcon } from '@chakra-ui/icons';
+import { BsFillMoonFill } from 'react-icons/bs';
 import {
   FiHome, 
   FiTrendingUp, 
@@ -307,18 +307,18 @@ const LayoutTest = ()  => {
               );
             })}
           </HStack>
-          <Menu>
-            <MenuButton>
-              <Avatar size={'sm'}></Avatar>
-            </MenuButton>
-          </Menu>
           <IconButton
             onClick={toggleColorMode}
             bg={useColorModeValue('white', 'gray.800')}
             aria-label='toggle theme'
-            icon={colorMode === 'light' ?   <MoonIcon></MoonIcon> : <SunIcon></SunIcon>}
+            icon={colorMode === 'light' ? <BsFillMoonFill></BsFillMoonFill> : <SunIcon></SunIcon>}
           >
           </IconButton>
+          <Menu>
+            <MenuButton pr={2}>
+              <Avatar size={'sm'}></Avatar>
+            </MenuButton>
+          </Menu>
         </HStack>
       </Flex>
     </Flex>
