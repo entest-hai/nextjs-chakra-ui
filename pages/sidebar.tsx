@@ -232,7 +232,7 @@ const LayoutTest = ()  => {
           ); 
         }) }
       </Flex>
-      <Flex bg='gray.300' height={61} width='100%' align='center' justifyContent='space-between'>
+      <Flex bg='gray.100' height={61} width='100%' align='center' justifyContent='space-between'>
         <HStack spacing={2} alignItems='center' flex={'1'} maxW={'600'}>
           <IconButton
             ml={0}
