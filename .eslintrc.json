@@ -14,10 +14,7 @@
       "error",
       {
         "argsIgnorePattern": "^_",
-        "varsIgnorePattern": [
-          "^_",
-          "colorMode"
-        ]
+        "varsIgnorePattern": "^_"
       }
     ],
     "react/display-name": 0

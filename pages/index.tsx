@@ -14,7 +14,7 @@ import {Text,
   Icon, 
   useColorModeValue, 
   createIcon} from '@chakra-ui/react';
-import { Illustration } from './illustration';
+import { Illustration } from './landing/illustration';
 
 const Arrow = createIcon({
   displayName: 'Arrow',

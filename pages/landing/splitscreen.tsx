@@ -4,7 +4,8 @@ import {
   Heading, 
   Image, 
   Stack, 
-  Text
+  Text,
+  useBreakpointValue
 } from '@chakra-ui/react'; 
 
 const SplitScreen = () => {
@@ -16,7 +17,16 @@ const SplitScreen = () => {
           <Text 
             as={'span'}
             position={'relative'}
-            bg='blue.400'
+            _after={{
+              content:"''", 
+              width: 'full',
+              height: useBreakpointValue({ base: '20%', md: '30%' }), 
+              pos: 'absolute',
+              bottom: 1, 
+              left: 0, 
+              bg: 'blue.400',
+              zIndex: -1
+            }}
           >
             Freelance
           </Text>
