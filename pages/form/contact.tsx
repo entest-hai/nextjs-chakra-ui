@@ -1,3 +1,6 @@
+// 14 DEC 2021 TRAN MINH HAI 
+// contact form 
+
 import {
   MdPhone, 
   MdEmail, 
@@ -6,8 +9,26 @@ import {
   MdOutlineEmail,
 } from 'react-icons/md';
 
-import { BsGithub, BsDiscord, BsPerson } from 'react-icons/bs';
-import {Box, Container, Heading, IconButton, Button, HStack, Text, VStack, Wrap, WrapItem, FormControl, FormLabel, InputGroup, InputLeftElement, Input, Textarea, Flex} from '@chakra-ui/react';
+import { BsGithub, 
+  BsDiscord, 
+  BsPerson } from 'react-icons/bs';
+import {Box, 
+  Container, 
+  Heading, 
+  IconButton, 
+  Button, 
+  HStack, 
+  Text, 
+  VStack, 
+  Wrap, 
+  WrapItem, 
+  FormControl, 
+  FormLabel, 
+  InputGroup, 
+  InputLeftElement, 
+  Input, 
+  Textarea, 
+  Flex} from '@chakra-ui/react';
 
 const Contact = () => {
   return (
@@ -101,9 +122,10 @@ const Contact = () => {
                       <FormLabel>Your Name</FormLabel>
                       <InputGroup borderColor="#E0E1E7">
                         <InputLeftElement
-                          pointerEvents="none"
-                          children={<BsPerson color="gray.800" />}
-                        />
+                          pointerEvents='none'
+                        >
+                          {<BsPerson color="gray.800" />}
+                        </InputLeftElement>
                         <Input type="text" size="md" />
                       </InputGroup>
                     </FormControl>
@@ -111,9 +133,10 @@ const Contact = () => {
                       <FormLabel>Mail</FormLabel>
                       <InputGroup borderColor="#E0E1E7">
                         <InputLeftElement
-                          pointerEvents="none"
-                          children={<MdOutlineEmail color="gray.800" />}
-                        />
+                          pointerEvents='none'
+                        >
+                          {<MdOutlineEmail color="gray.800" />}
+                        </InputLeftElement>
                         <Input type="text" size="md" />
                       </InputGroup>
                     </FormControl>
