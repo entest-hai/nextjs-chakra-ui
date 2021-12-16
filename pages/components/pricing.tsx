@@ -1,4 +1,4 @@
-import { Box, ListItem, Heading, Text, VStack, HStack, Button, List, ListIcon, useColorModeValue } from '@chakra-ui/react';
+import { Box, ListItem, Text, VStack, HStack, Button, List, ListIcon, useColorModeValue } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa'; 
 
 const Pricing = () => {

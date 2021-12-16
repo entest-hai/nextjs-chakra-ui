@@ -35,7 +35,7 @@ const TestFlexBox = () => {
       display='flex'
     >
       <Box bg='tomato' py={10} mx={4} flexBasis={'3xl'}>
-        The first flex box
+        flexBasis=3xl
       </Box>
       <Box bg='tomato' py={10} mx={4}>
         The first flex box
