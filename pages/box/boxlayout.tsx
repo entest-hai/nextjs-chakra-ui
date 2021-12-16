@@ -6,7 +6,46 @@
 
 import { Avatar, ListItem,ListIcon, VStack, Badge, Box, Button, Heading, HStack, List, Stack, Text, useColorModeValue } from '@chakra-ui/react'; 
 import { FaCheckCircle } from 'react-icons/fa';
+import { HiPencilAlt } from 'react-icons/hi'; 
 
+
+const TestBox = () => {
+  return (
+    <Box width='100%' bg='gray.200' py={10}>
+      <Box bg='tomato' py={10} my={4} maxW='3xl' mx='auto'>
+        The first box
+      </Box>
+      <Box bg='tomato' py={10} my={4}>
+        The first box
+      </Box>
+      <Box bg='tomato' py={10} my={4}>
+        The first box
+      </Box>
+    </Box>
+  ); 
+}
+
+
+const TestFlexBox = () => {
+  return (
+    <Box 
+      width='100%' 
+      bg='gray.200' 
+      py={10} 
+      display='flex'
+    >
+      <Box bg='tomato' py={10} mx={4}>
+        The first flex box
+      </Box>
+      <Box bg='tomato' py={10} mx={4}>
+        The first flex box
+      </Box>
+      <Box bg='tomato' py={10} mx={4}>
+        The first flex box
+      </Box>
+    </Box>
+  );
+}
 
 const BasicBox = () => {
   return (
@@ -330,10 +369,192 @@ const BoxThreePriceCard = () => {
   ); 
 }
 
+const CardInfor = () => {
+
+  return (
+    <Box
+      bg='gray.200' 
+      width='100%' 
+      as='section'
+      py={10}
+    >
+      <Box
+        mx='auto'
+        maxW={'3xl'}
+        bg={useColorModeValue('white', 'gray.700')}
+        rounded={{ md: 'lg' }}
+        shadow='base'
+        overflow='hidden'
+      >
+        <Box
+          px={'6'}
+          py={'4'}
+          display='flex'
+          flexDirection='row'
+          alignItems='center'
+          justifyContent='space-between'
+          borderBottomWidth={'1px'}
+        >
+          <Heading 
+            fontSize='lg'
+          >
+            Account Info
+          </Heading>
+          <Button 
+            minW='20'
+            variant='outline'
+            leftIcon={<HiPencilAlt></HiPencilAlt>}
+          >
+            Edit
+          </Button>
+        </Box>
+        <Box>
+          <Box
+            as="dl"
+            px='6'
+            py='4'
+            display='flex'
+            flexDirection='row'
+          >
+            <Box as='dt' minWidth='180px'>
+              Name
+            </Box>
+            <Box as='dd' flex={1} fontWeight='semibold'>
+              Chakra UI
+            </Box>
+          </Box>
+          <Box
+            display='flex'
+            flexDirection='row'
+            px='6'
+            py='4'
+            bg={'gray.50'}
+          >
+            <Box as='dt' minWidth='180px'>
+              Email
+            </Box>
+            <Box as='dd' flex={1} fontWeight='semibold'>
+              htranminhhai20@gmail.com
+            </Box>
+          </Box>
+          <Box
+            display='flex'
+            flexDirection='row'
+            px='6'
+            py='4'
+            bg={'gray.50'}
+          >
+            <Box as='dt' minWidth='180px'>
+              Email
+            </Box>
+            <Box as='dd' flex={1} fontWeight='semibold'>
+              htranminhhai20@gmail.com
+            </Box>
+          </Box>
+          <Box
+            display='flex'
+            flexDirection='row'
+            px='6'
+            py='4'
+            bg={'gray.50'}
+          >
+            <Box as='dt' minWidth='180px'>
+              Email
+            </Box>
+            <Box as='dd' flex={1} fontWeight='semibold'>
+              htranminhhai20@gmail.com
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+
+const XCenterBoxByMargin = () => {
+  return (
+    <Box bg='gray.200' width='100%'py={10}>
+      <Box width='500px' height='300px' bg='tomato' mx='auto'>
+      </Box>
+    </Box>
+  );
+}
+
+const XCenterBoxContent = () => {
+  return (
+    <Box 
+      bg='gray.200' 
+      width='100%' py='10'
+    >
+      <Box 
+        bg='tomato' 
+        display='flex' 
+        flexDirection='row' 
+        justifyContent='space-between'
+        px={4}
+        py={6}
+        maxW='3xl'
+        mx='auto'
+      >
+        <Box 
+          minW={'180px'}
+        >
+            Name
+        </Box>
+        <Box 
+          fontWeight='semibold'
+          flex={1}
+        >
+            Tran Minh Hai
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+
+const XCenterFlexBoxContent = () => {
+  return (
+    <Box 
+      bg='gray.200' 
+      width='100%' py='10'
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      flexDirection='column'
+    >
+      <Box
+        maxW='3xl'
+        bg='tomato' 
+        display='flex' 
+        flexDirection='row' 
+        justifyContent='space-between'
+        px={4}
+        py={6}
+      >
+        <Box 
+          minW='180px'
+        >
+            Name
+        </Box>
+        <Box
+          fontWeight='semibold'
+        >
+            Tran Minh Hai
+        </Box>
+      </Box>
+    </Box>
+  );
+}
 
 const BasicLayout = () => {
   return (
     <Box width='100%'>
+      <Text>Test simple Box</Text>
+      <TestBox></TestBox>
+      <Text>Test flex Box</Text>
+      <TestFlexBox></TestFlexBox>
       <Text>The most basic box, as a div with items in a column</Text>
       <BasicBox></BasicBox>
       <Text>Box with display flex, justifyContent-center-main-axis, alignItems-center-cross-axis</Text>
@@ -348,6 +569,14 @@ const BasicLayout = () => {
       <BoxPrice></BoxPrice>
       <Text>Three price box</Text>
       <BoxThreePriceCard></BoxThreePriceCard>
+      <Text>Card information</Text>
+      <CardInfor></CardInfor>
+      <Text>Center box by auto-margin</Text>
+      <XCenterBoxByMargin></XCenterBoxByMargin>
+      <Text>XCenter box content by auto-margin</Text>
+      <XCenterBoxContent></XCenterBoxContent>
+      <Text>XCenter flex box content</Text>
+      <XCenterFlexBoxContent></XCenterFlexBoxContent>
     </Box>
   ); 
 }
