@@ -1,66 +1,66 @@
-// 11 DEC 2021 TRAN MINH HAI 
-// refactor sidebar and hsidebar 
-// 12 DEC 2021 TRAN MINH HAI 
-// combine navbar and sidebar 
+// 11 DEC 2021 TRAN MINH HAI
+// refactor sidebar and hsidebar
+// 12 DEC 2021 TRAN MINH HAI
+// combine navbar and sidebar
 import { ReactNode } from 'react';
-import { Flex, 
- Text, 
- Avatar, 
-Button, 
- Menu, 
- MenuButton, 
- HStack, 
- Box, 
- Icon, 
- FlexProps, 
- Link, 
- Spacer, 
- IconButton, 
- useDisclosure, 
- Input, 
- InputGroup, 
+import { Flex,
+ Text,
+ Avatar,
+Button,
+ Menu,
+ MenuButton,
+ HStack,
+ Box,
+ Icon,
+ FlexProps,
+ Link,
+ Spacer,
+ IconButton,
+ useDisclosure,
+ Input,
+ InputGroup,
  InputLeftElement,
  useColorMode,
  useColorModeValue} from '@chakra-ui/react';
 import { useState } from 'react';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
-import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'; 
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
 import { SearchIcon, SunIcon } from '@chakra-ui/icons';
 import { BsFillMoonFill } from 'react-icons/bs';
 import {
-  FiHome, 
-  FiTrendingUp, 
-  FiCompass, 
-  FiSettings, 
+  FiHome,
+  FiTrendingUp,
+  FiCompass,
+  FiSettings,
   FiStar,
   FiMenu
-} from 'react-icons/fi'; 
+} from 'react-icons/fi';
 
 const NNavItem = ( { children } : { children: ReactNode }) => {
   return (
     <Button variant='ghost' colorScheme='teal'>
       {children}
     </Button>
-  ); 
+  );
 }
 
 interface LinkItemsProps {
-  name: string; 
-  icon: IconType; 
+  name: string;
+  icon: IconType;
 }
 
 const LinkItems: Array<LinkItemsProps> = [
-  { name: 'Home', icon: FiHome }, 
-  { name: 'Trending', icon: FiTrendingUp }, 
-  { name: 'Explore', icon: FiCompass }, 
-  { name: 'Favourite', icon: FiStar }, 
+  { name: 'Home', icon: FiHome },
+  { name: 'Trending', icon: FiTrendingUp },
+  { name: 'Explore', icon: FiCompass },
+  { name: 'Favourite', icon: FiStar },
   { name: 'Settings', icon: FiSettings }
 ]
 
 interface NavItemProps extends FlexProps {
-  icon: IconType; 
-  children: ReactText; 
+  icon: IconType;
+  children: ReactText;
 }
 
 const NavItem = ({ icon, children, ... rest }: NavItemProps) => {
@@ -72,8 +72,8 @@ const NavItem = ({ icon, children, ... rest }: NavItemProps) => {
         borderRadius='lg'
         role='group'
         cursor='pointer'
-        flexDirection='row' 
-        justifyContent='flex-start' 
+        flexDirection='row'
+        justifyContent='flex-start'
         align='center'
         _hover={{bg: 'cyan.400', color: 'white'}}
         {...rest}
@@ -82,20 +82,20 @@ const NavItem = ({ icon, children, ... rest }: NavItemProps) => {
         {children}
       </Flex>
     </Link>
-  ); 
+  );
 }
 
 const SSidebar = () => {
 
   const [showSidebar, _setShowSidebar] = useState(true)
-  
+
   return (
     <Flex>
       <Flex display = {{ base: 'none', md: 'block' }}>
-        <Flex 
+        <Flex
           bg='gray.100'
-          height='100vh' 
-          width={60} 
+          height='100vh'
+          width={60}
           display={ showSidebar ? 'block' : 'none' }
         >
           <Flex h="20" alignItems='center' mx='8'>
@@ -106,10 +106,10 @@ const SSidebar = () => {
           { LinkItems.map(( item, index ) => {
             return (
               <NavItem key={index} icon={item.icon}>{item.name}</NavItem>
-            ); 
+            );
           }) }
         </Flex>
-      </Flex>      
+      </Flex>
     </Flex>
   );
 }
@@ -120,9 +120,9 @@ const HSidebar = () => {
   return (
     <Flex>
       <Flex display = {{ base: 'block', md: 'none' }}>
-        <Flex 
+        <Flex
           bg='gray.100'
-          height='100vh' 
+          height='100vh'
           width={60}
           display={ showSidebar ? 'block' : 'none' }
         >
@@ -141,10 +141,10 @@ const HSidebar = () => {
           { LinkItems.map(( item, index ) => {
             return (
               <NavItem key={index} icon={item.icon}>{item.name}</NavItem>
-            ); 
+            );
           }) }
         </Flex>
-      </Flex>      
+      </Flex>
       <Flex display={{ base: 'block', md: 'none' }}>
         <IconButton
           display={ showSidebar ? 'none' : 'flex' }
@@ -155,7 +155,7 @@ const HSidebar = () => {
         </IconButton>
       </Flex>
     </Flex>
-  ); 
+  );
 }
 
 const LayoutNav = () => {
@@ -164,7 +164,7 @@ const LayoutNav = () => {
       <SSidebar></SSidebar>
       <HSidebar></HSidebar>
     </Flex>
-  ); 
+  );
 }
 
 
@@ -175,10 +175,10 @@ const Layout = () => {
   return (
     <Flex flexDirection='row'>
       <Flex display = { showSidebar ? 'block' : 'none' }>
-        <Flex 
+        <Flex
           bg='gray.100'
-          height='100vh' 
-          width={60} 
+          height='100vh'
+          width={60}
           display={ showSidebar ? 'block' : 'none' }
         >
           <Flex height={'58'} alignItems='center' mx='8'>
@@ -196,10 +196,10 @@ const Layout = () => {
           { LinkItems.map(( item, index ) => {
             return (
               <NavItem key={index} icon={item.icon}>{item.name}</NavItem>
-            ); 
+            );
           }) }
         </Flex>
-      </Flex>      
+      </Flex>
       <Flex bg='tomato' width='100%'height={'58'} align='center'>
         <IconButton
           icon={<FiMenu fontSize={24}></FiMenu>}
@@ -211,7 +211,7 @@ const Layout = () => {
         </IconButton>
       </Flex>
     </Flex>
-  ); 
+  );
 }
 
 
@@ -222,12 +222,16 @@ const LayoutTest = ()  => {
 
   return (
     <Flex flexDirection='row'>
-      <Flex 
+      <Flex
         bg={useColorModeValue('white', 'gray.800')}
-        height='100vh' 
-        width={60} 
-        flexDirection='column' 
+        height='100vh'
+        width={60}
+        flexDirection='column'
         display={isOpen ?  'flex' : 'none'}
+        borderRightWidth={'2px'}
+        borderRightColor={'gray.200'}
+        shadow={'base'}
+        boxShadow={'lg'}
       >
         <Flex height={'58'} alignItems='center' mx='8'>
           <Text
@@ -248,14 +252,14 @@ const LayoutTest = ()  => {
         { LinkItems.map(( item, index ) => {
           return (
             <NavItem key={index} icon={item.icon}>{item.name}</NavItem>
-          ); 
+          );
         }) }
       </Flex>
-      <Flex 
-        bg={useColorModeValue('white', 'gray.800')} 
-        height={61} 
-        width='100%' 
-        align='center' 
+      <Flex
+        bg={useColorModeValue('white', 'gray.800')}
+        height={61}
+        width='100%'
+        align='center'
         justifyContent='space-between'>
         <HStack spacing={2} alignItems='center' flex={'1'} maxW={'600'}>
           <IconButton
@@ -287,23 +291,23 @@ const LayoutTest = ()  => {
             <Input
               isFullWidth={true}
               bg='white'
-              minH={10} 
+              minH={10}
               borderColor='blue.200'
               borderWidth='thin'
               focusBorderColor='blue.500'
-              placeholder='Search' 
+              placeholder='Search'
             />
           </InputGroup>
         </HStack>
         <HStack spacing={4} ml={2}>
-          <HStack 
-            spacing={4} 
-            as='nav' 
+          <HStack
+            spacing={4}
+            as='nav'
             display={{ base: 'none', md: 'flex' }}
           >
             {['Dashboard','Projects','Team'].map((name,index) => {
               return (
-                <NNavItem key={index}>{name}</NNavItem> 
+                <NNavItem key={index}>{name}</NNavItem>
               );
             })}
           </HStack>
@@ -322,8 +326,8 @@ const LayoutTest = ()  => {
         </HStack>
       </Flex>
     </Flex>
-  ); 
+  );
 }
 
 
-export default LayoutTest; 
+export default LayoutTest;
