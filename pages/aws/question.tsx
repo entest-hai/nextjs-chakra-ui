@@ -1,6 +1,14 @@
 // 16 DEC 2021 MIN TRAN aws question form
-//
-import { Box,Button,FlexProps,Text, VStack } from '@chakra-ui/react';
+// fix color mode better 
+import { Box, 
+  Button, 
+  FlexProps, 
+  Text, 
+  VStack, 
+  Link, 
+  useColorModeValue,
+  useDisclosure
+} from '@chakra-ui/react';
 import { useState} from 'react';
 
 interface QuestionProps extends FlexProps {
@@ -12,7 +20,12 @@ interface QuestionProps extends FlexProps {
 const Question = ({ title, question, options }: QuestionProps) => {
   return (
     <Box maxW={'5xl'} mx='auto'>
-      <Box fontWeight='semibold' bg='blue.200' py={4} px={4}>
+      <Box 
+        fontWeight='semibold' 
+        bg={useColorModeValue('blue.200', 'blue.600')}
+        py={4} 
+        px={4}
+      >
         {title}
       </Box>
       <Box my={4} px={4}>
@@ -31,19 +44,25 @@ const Question = ({ title, question, options }: QuestionProps) => {
 interface ExplanationProps extends FlexProps {
   title: string; 
   solution: Array<string>;
-  explanation: string; 
+  explanation: string;
+  references: Array<string>; 
 }
 
-const Explanation = ({title, solution, explanation}: ExplanationProps) => {
+const Explanation = ({title, solution, explanation, references}: ExplanationProps) => {
   return (
     <Box maxW={'5xl'} mx='auto'>
-      <Box fontWeight='semibold' bg='gray.200' py={4} px={4}>
+      <Box 
+        fontWeight='semibold' 
+        bg={useColorModeValue('gray.200','gray.600')} 
+        py={4} 
+        px={4}
+      >
         <Text fontWeight={'semibold'}>
           {title}
         </Text>
       </Box>
       <Box fontWeight='semibold' px={4}>
-        Correct: {solution}
+        Correct: {solution.join(', ')}
       </Box>
       <VStack alignItems='start' px={4} py={2}>
         <Text fontWeight='semibold'>
@@ -55,17 +74,15 @@ const Explanation = ({title, solution, explanation}: ExplanationProps) => {
       </VStack>
       <VStack alignItems='start' px={4} py={2}>
         <Text fontWeight='semibold'>
-          Reference
+          References
         </Text>
-        <Text>
-          [1]. Link
-        </Text>
-        <Text>
-          [2]. Link
-        </Text>
-        <Text>
-          [3]. Link
-        </Text>
+        {references.map((ref,index)=>{
+          return (
+            <Link key={index} href={ref} target='_blank'>
+              <Text wordBreak={'break-word'}>{index+1}. {ref}</Text>
+            </Link>
+          );
+        })}
       </VStack>
     </Box>
   );
@@ -74,7 +91,7 @@ const Explanation = ({title, solution, explanation}: ExplanationProps) => {
 
 const TestQuestion = () => {
 
-  const [showSolution, setShowSolution] = useState(false); 
+  const {isOpen, onOpen, onClose} = useDisclosure()
 
   const title = 'Question 1'
   const question = 'In AWS CloudFormation, what is a circular dependcy?'
@@ -85,21 +102,39 @@ const TestQuestion = () => {
     'D. When a Template references a region, which references the original Template.'
   ]
 
+  const references = [
+    'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error', 
+  ]
+
+  const solution = [
+    'B'
+  ]
+
+  const explanation = 'To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.'
+
   return (
     <Box width='100%' height='100vh'>
-      <Box maxW='5xl' mx='auto' borderWidth={'1px'}>
+      <Box 
+        maxW='5xl' 
+        mx='auto' 
+        borderWidth={'2px'}
+        borderRadius={'sm'}
+        py={6}
+        shadow='base'
+      >
         <Question 
           title={title} 
           options={options} 
           question={question}
         > 
         </Question>
-        <Box height={4} width='full' />
-        <Box display={showSolution ? 'block': 'none'}>
+        <Box height={4} />
+        <Box display={isOpen ? 'none': 'flex'}>
           <Explanation
             title='Solution'
-            solution={['A']}
-            explanation=' A is correct because according to AWS [1] this should be working well.'
+            solution={solution}
+            references={references}
+            explanation={explanation}
           >
           </Explanation>
         </Box>
@@ -107,11 +142,9 @@ const TestQuestion = () => {
           <Button
             variant='solid'
             colorScheme='gray'
-            onClick={() => {
-              setShowSolution(!showSolution)
-            }}
+            onClick={isOpen ? onClose : onOpen}
           >
-            {showSolution ? 'Hide Solution' : 'Show Solution'}
+            {isOpen ? 'Hide Solution' : 'Show Solution'}
           </Button>
         </Box>
       </Box>

@@ -4,24 +4,24 @@
 // combine navbar and sidebar
 import { ReactNode } from 'react';
 import { Flex,
- Text,
- Avatar,
-Button,
- Menu,
- MenuButton,
- HStack,
- Box,
- Icon,
- FlexProps,
- Link,
- Spacer,
- IconButton,
- useDisclosure,
- Input,
- InputGroup,
- InputLeftElement,
- useColorMode,
- useColorModeValue} from '@chakra-ui/react';
+  Text,
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  HStack,
+  Box,
+  Icon,
+  FlexProps,
+  Link,
+  Spacer,
+  IconButton,
+  useDisclosure,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  useColorMode,
+  useColorModeValue} from '@chakra-ui/react';
 import { useState } from 'react';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
