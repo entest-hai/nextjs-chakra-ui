@@ -1,0 +1,110 @@
+[
+  {
+    "number": 1,
+    "topic": "compute",
+    "description": "In AWS CloudFormation, what is a circular dependcy?",
+    "options": [
+      "When Nested Stacks depend on each other.",
+      "When Resources form a Depend On loop.",
+      "When a Template references an earlier version of itself.",
+      "When a Template references a region, which references the original Template."
+    ],
+    "answers": [
+      "B"
+    ],
+    "explanation": "To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error"
+    ]
+  },
+  {
+    "number": 2,
+    "topic": "compute",
+    "description": "In AWS CloudFormation, what is a circular dependcy?",
+    "options": [
+      "When Nested Stacks depend on each other.",
+      "When Resources form a Depend On loop.",
+      "When a Template references an earlier version of itself.",
+      "When a Template references a region, which references the original Template."
+    ],
+    "answers": [
+      "B"
+    ],
+    "explanation": "To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error"
+    ]
+  },
+  {
+    "number": 3,
+    "topic": "compute",
+    "description": "In AWS CloudFormation, what is a circular dependcy?",
+    "options": [
+      "When Nested Stacks depend on each other.",
+      "When Resources form a Depend On loop.",
+      "When a Template references an earlier version of itself.",
+      "When a Template references a region, which references the original Template."
+    ],
+    "answers": [
+      "B"
+    ],
+    "explanation": "To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error"
+    ]
+  },
+  {
+    "number": 4,
+    "topic": "compute",
+    "description": "In AWS CloudFormation, what is a circular dependcy?",
+    "options": [
+      "When Nested Stacks depend on each other.",
+      "When Resources form a Depend On loop.",
+      "When a Template references an earlier version of itself.",
+      "When a Template references a region, which references the original Template."
+    ],
+    "answers": [
+      "B"
+    ],
+    "explanation": "To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error"
+    ]
+  },
+  {
+    "number": 5,
+    "topic": "compute",
+    "description": "In AWS CloudFormation, what is a circular dependcy?",
+    "options": [
+      "When Nested Stacks depend on each other.",
+      "When Resources form a Depend On loop.",
+      "When a Template references an earlier version of itself.",
+      "When a Template references a region, which references the original Template."
+    ],
+    "answers": [
+      "B"
+    ],
+    "explanation": "To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error"
+    ]
+  },
+  {
+    "number": 6,
+    "topic": "compute",
+    "description": "In AWS CloudFormation, what is a circular dependcy?",
+    "options": [
+      "When Nested Stacks depend on each other.",
+      "When Resources form a Depend On loop.",
+      "When a Template references an earlier version of itself.",
+      "When a Template references a region, which references the original Template."
+    ],
+    "answers": [
+      "B"
+    ],
+    "explanation": "To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error"
+    ]
+  }
+]

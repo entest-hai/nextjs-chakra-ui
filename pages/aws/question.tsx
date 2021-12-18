@@ -9,7 +9,7 @@ import { Box,
   useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
-import { useState} from 'react';
+import {Key, useEffect, useState} from 'react';
 
 interface QuestionProps extends FlexProps {
   title: string;
@@ -89,65 +89,100 @@ const Explanation = ({title, solution, explanation, references}: ExplanationProp
 }
 
 
+interface QuestionAnswerBoxProps extends FlexProps {
+  title: string;
+  question: string; 
+  options: Array<string>; 
+  solution: Array<string>; 
+  explanation: string; 
+  references: Array<string>; 
+} 
+
+const QuestionAnswerBox = ({ 
+  title, 
+  question, 
+  options, 
+  solution, 
+  explanation, 
+  references
+} : QuestionAnswerBoxProps) => {
+  const {isOpen, onToggle} = useDisclosure()
+  return (
+    <Box 
+      maxW='5xl' 
+      mx='auto' 
+      borderWidth={'2px'}
+      borderRadius={'sm'}
+      py={6}
+      shadow='base'
+    >
+      <Question 
+        title={title} 
+        options={options} 
+        question={question}
+      > 
+      </Question>
+      <Box height={4} />
+      <Box display={isOpen ? 'flex': 'none'}>
+        <Explanation
+          title='Solution'
+          solution={solution}
+          references={references}
+          explanation={explanation}
+        >
+        </Explanation>
+      </Box>
+      <Box px={4} py={2}>
+        <Button
+          variant='solid'
+          colorScheme='gray'
+          onClick={onToggle}
+        >
+          {isOpen ? 'Hide Solution' : 'Show Solution'}
+        </Button>
+      </Box>
+    </Box>
+  );
+}
+
+
 const TestQuestion = () => {
+  const [questions, setQuestions] = useState([])
 
-  const {isOpen, onOpen, onClose} = useDisclosure()
+  const fetchJsonFromLocal = async (file: string) => {
+    console.log('fetch json from local, ', file);
+    let content = null;
+    await fetch('./../db.json')
+      .then((resp) => resp.json())
+      .then((json) => {
+        content = json;
+      });
+    return content;
+  };
 
-  const title = 'Question 1'
-  const question = 'In AWS CloudFormation, what is a circular dependcy?'
-  const options = [
-    'A. When Nested Stacks depend on each other.',
-    'B. When Resources form a Depend On loop.',
-    'C. When a Template references an earlier version of itself.',
-    'D. When a Template references a region, which references the original Template.'
-  ]
+  const fetchData = async () => {
+    const res = await fetchJsonFromLocal('')
+    setQuestions(res)
+  }
 
-  const references = [
-    'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error', 
-  ]
 
-  const solution = [
-    'B'
-  ]
-
-  const explanation = 'To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.'
+  useEffect(() => {fetchData()}, [])
 
   return (
     <Box width='100%' height='100vh'>
-      <Box 
-        maxW='5xl' 
-        mx='auto' 
-        borderWidth={'2px'}
-        borderRadius={'sm'}
-        py={6}
-        shadow='base'
-      >
-        <Question 
-          title={title} 
-          options={options} 
-          question={question}
-        > 
-        </Question>
-        <Box height={4} />
-        <Box display={isOpen ? 'none': 'flex'}>
-          <Explanation
-            title='Solution'
-            solution={solution}
-            references={references}
-            explanation={explanation}
+      {questions && questions.map((question:any, index:Key) => {
+        return (
+          <QuestionAnswerBox 
+            key={index}
+            title={'Question ' + question.number}
+            question={question.description}
+            options={question.options}
+            solution={question.solution}
+            explanation={question.explanation}
+            references={question.references}
           >
-          </Explanation>
-        </Box>
-        <Box px={4} py={2}>
-          <Button
-            variant='solid'
-            colorScheme='gray'
-            onClick={isOpen ? onClose : onOpen}
-          >
-            {isOpen ? 'Hide Solution' : 'Show Solution'}
-          </Button>
-        </Box>
-      </Box>
+          </QuestionAnswerBox>
+        )})}
     </Box>
   );
 }

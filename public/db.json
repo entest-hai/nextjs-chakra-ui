@@ -1,0 +1,112 @@
+[
+  {
+    "number": 1,
+    "topic": "compute",
+    "description": "In AWS CloudFormation, what is a circular dependcy?",
+    "options": [
+      "When Nested Stacks depend on each other.",
+      "When Resources form a Depend On loop.",
+      "When a Template references an earlier version of itself.",
+      "When a Template references a region, which references the original Template."
+    ],
+    "solution": [
+      "B"
+    ],
+    "explanation": "To resolve a dependency error, add a Depends On attribute to resources that depend on other resources in your template. In some cases, you must explicitly declare dependencies so that AWS CloudFormation can create or delete resources in the correct order. For example, if you create an Elastic IP and a VPC with an Internet gateway in the same stack, the Elastic IP must depend on the Internet gateway attachment. For additional information, see Depends On Attribute.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-dependency-error"
+    ]
+  },
+  {
+    "number": 2,
+    "topic": "compute",
+    "description": "Which of the following assertions is accurate in the context of AWS CloudFormation?",
+    "options": [
+      "A. Actual resource names are a combination of the resource ID, stack, and logical resource name.",
+      "B. Actual resource name is the stack resource name.",
+      "C. Actual resource name is the logical resource name.",
+      "D. Actual resource names are a combination of the stack and logical resource name."
+    ],
+    "solution": [
+      "D"
+    ],
+    "explanation": "In AWS CloudFormation, actual resource names are a combination of the stack and logical resource name. This allows multiple stacks to be created from a template without fear of name collisions between AWS resources.",
+    "references": [
+      "https://aws.amazon.com/cloudformation/faqs/"
+    ]
+  },
+  {
+    "number": 3,
+    "topic": "compute",
+    "description": "What is a quiet push notification in Amazon Cognito?",
+    "options": [
+      "A. It is a push message that is received by your application on a user's device that will not be seen by the user.",
+      "B. It is a push message that is received by your application on a user's device that will return the user's geolocation.",
+      "C. It is a push message that is received by your application on a user's device that will not be heard by the user.",
+      "D. It is a push message that is received by your application on a user's device that will return the user's authentication credentials."
+    ],
+    "solution": [
+      "A"
+    ],
+    "explanation": "Amazon Cognito uses the Amazon Simple Notification Service (SNS) to send silent push notifications to devices. A silent push notification is a push message that is received by your application on a user's device that will not be seen by the user.",
+    "references": [
+      "http://aws.amazon.com/cognito/faqs/"
+    ]
+  },
+  {
+    "number": 4,
+    "topic": "compute",
+    "description": "Which of the following statements concerning delegating authorization to perform API calls is NOT accurate in the context of IAM roles for Amazon EC2?",
+    "options": [
+      "A. You cannot create an IAM role.",
+      "B. You can have the application retrieve a set of temporary credentials and use them.",
+      "C. You can specify the role when you launch your instances.",
+      "D. You can define which accounts or AWS services can assume the role."
+    ],
+    "solution": [
+      "B"
+    ],
+    "explanation": "Amazon designed IAM roles so that your applications can securely make API requests from your instances, without requiring you to manage the security credentials that the applications use. Instead of creating and distributing your AWS credentials, you can delegate permission to make API requests using IAM roles as follows: Create an IAM role. Define which accounts or AWS services can assume the role. Define which API actions and resources the application can use after assuming the role. Specify the role when you launch your instances. Have the application retrieve a set of temporary credentials and use them.",
+    "references": [
+      "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html"
+    ]
+  },
+  {
+    "number": 5,
+    "topic": "compute",
+    "description": "An application consists of three tiers within a single Region. A SA is designing a disaster recovery strategy that includes an RTO of 30 minutes and an RPO of 5 minutes for the data tier. Application tiers use Amazon EC2 instances and are stateless. The data tier consists of a 30 TB Amazon Aurora database. Which combination of steps satisfies the RTO and RPO requirements while optimizing costs?",
+    "options": [
+      "A. Deploy a hot standby of the application tiers to another Region",
+      "B. Create a cross-region Aurora MySQL Replica of the database",
+      "C. Create snapshots of the Aurora database every 5 minutes.",
+      "D. Create a cross-Region Aurora Replica of the database.",
+      "E. Create an AWS Backup job to replicate data to another Region."
+    ],
+    "solution": [
+      "A",
+      "D"
+    ],
+    "explanation": "The recovery time objective (RTO) defines how quickly a service must be restored and recovery point objective RPO defines how much data it is acceptable to lose. For example an RTO of 30 minutes",
+    "references": [
+      ""
+    ]
+  },
+  {
+    "number": 6,
+    "topic": "compute",
+    "description": "A company has a mobile application that uses Amazon API Gateway, AWS Lambda, and Amazon DynamoDB. The application is write intensive and costs have recently increased significantly. The biggest increase in cost has been for the AWS Lambda function. Application utilization is unpredictable but has been increasing steadily each month. A SA has noticed that the Lambda function execution time averages over 4 minutes. This is due to wait time for a high latency network call to an on-premises to MySQL database. A VPN is used to connect to the VPC. How can the SA reduce the cost of the current architecture? ",
+    "options": [
+      "A. Substitute AWS Direct Connect for the VPN to minimize network latency to the on-premises MySQL database. Local caching should be enabled in the mobile application to minimize Lambda function invocation calls. Monitor the performance of the Lambda function; progressively reduce the timeout and memory characteristics while keeping an acceptable execution time. Offload DynamoDB's commonly accessed records to Amazon ElastiCache.",
+      "B. Substitute AWS Direct Connect for the VPN to minimize network latency to the on-premises MySQL database. Cache API Gateway response data in Amazon CloudFront. Instead of Lambda, use Amazon EC2 Reserved Instances. Enable Auto Scaling on Amazon EC2 and make advantage of Spot Instances during peak periods. To control target consumption, enable DynamoDB Auto Scaling.",
+      "C.Migrate the MySQL database server to Amazon RDS for MySQL Multi-AZ. Enable Amazon CloudFront caching of Amazon API Gateway responses to minimize the number of Lambda function invocations. Monitor the performance of the Lambda function; progressively reduce the timeout and memory characteristics while keeping an acceptable execution time. Enable DynamoDB Accelerator and DynamoDB Auto Scaling for frequently accessed records.",
+      "D. Migrate the MySQL database server to Amazon RDS for MySQL Multi-AZ. Enable API caching on the API Gateway to minimize Lambda function calls. Continue to monitor the performance of the AWS Lambda function; progressively reduce the timeout and memory attributes while keeping an acceptable execution time. Enable DynamoDB's auto scaling."
+    ],
+    "solution": [
+      "A"
+    ],
+    "explanation": "Migrate the MySQL database erver into a Multi-AZ Amazon RDS for MySQL. Enable API caching on API Gateway to reduce the number of Lambda function invocations. Enable Auto Scaling in the DynamoDB.",
+    "references": [
+      ""
+    ]
+  }
+]
