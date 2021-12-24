@@ -1,13 +1,23 @@
 // 16 DEC 2021 MIN TRAN aws question form
 // fix color mode better 
-import { Box, 
+import { Box,
+  Modal, 
+  ModalOverlay, 
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody, 
+  ModalFooter,
+  HStack,
   Button, 
   FlexProps, 
   Text, 
   VStack, 
   Link, 
   useColorModeValue,
-  useDisclosure
+  useDisclosure,
+  Textarea,
+  Input
 } from '@chakra-ui/react';
 import {Key, useEffect, useState} from 'react';
 
@@ -107,6 +117,7 @@ const QuestionAnswerBox = ({
   references
 } : QuestionAnswerBoxProps) => {
   const {isOpen, onToggle} = useDisclosure()
+  const {isOpen: isModal, onOpen: onModelOpen, onClose: onModelClose} = useDisclosure()
   return (
     <Box 
       maxW='5xl' 
@@ -132,15 +143,72 @@ const QuestionAnswerBox = ({
         >
         </Explanation>
       </Box>
-      <Box px={4} py={2}>
+      <HStack px={4} py={2}>
         <Button
+          minWidth={40}
           variant='solid'
           colorScheme='gray'
           onClick={onToggle}
         >
           {isOpen ? 'Hide Solution' : 'Show Solution'}
         </Button>
-      </Box>
+        <Button
+          colorScheme='pink'
+          minWidth={40}
+          onClick={onModelOpen}
+        >
+          Edit
+        </Button>
+      </HStack>
+      <Modal isOpen={isModal} onClose={onModelClose}>
+        <ModalOverlay />
+        <ModalContent minWidth={{base: '100%', lg: '5xl'}}>
+          <ModalHeader>{title}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <VStack spacing={4} alignItems='start'>
+              <Text fontWeight='semibold'>
+                Question
+              </Text>
+              <Textarea>
+                {question}
+              </Textarea>
+              <Text fontWeight='semibold'>
+                Options
+              </Text>
+              {options.map((option, index) => (
+                <Input key={index} placeholder={option}></Input>
+              ))}
+              <Text fontWeight='semibold'>
+                Solution
+              </Text>
+              <Input placeholder={solution.join(', ')}></Input>
+              <Text fontWeight='semibold'>
+                Explanation
+              </Text>
+              <Textarea>
+                {explanation}
+              </Textarea>
+            </VStack>
+          </ModalBody>
+          <ModalFooter>
+            <Button 
+              variant='ghost'
+              colorScheme='blue' 
+              mr={3} 
+              onClick={onModelClose}
+            >
+              Close
+            </Button>
+            <Button 
+              variant='ghost'
+              colorScheme='pink'
+            >
+              Save
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 }
