@@ -36,12 +36,8 @@ const ButtonTwo = () => {
 
 
 const Test = () => {
-
   const [color, setColor] = useState('tomato')
-
-  
   return (
-
     <ControlContext.Provider value={{color: color, setColor: setColor}}>
       <ColorContext.Provider value='blue'>
         <Box width='100%' height='100vh'>
