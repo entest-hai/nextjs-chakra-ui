@@ -16,10 +16,12 @@ import { Box,
   Link, 
   useColorModeValue,
   useDisclosure,
-  Textarea,
-  Input
+  Input,
+  BoxProps
 } from '@chakra-ui/react';
-import {Key, useEffect, useState} from 'react';
+import React, {Key, useEffect, useState} from 'react';
+import {AutoResizeTextarea} from './../../components/auto_resize_textarea'
+import {UpdateQuestion} from './../../services/update_question'
 
 interface QuestionProps extends FlexProps {
   title: string;
@@ -99,6 +101,141 @@ const Explanation = ({title, solution, explanation, references}: ExplanationProp
 }
 
 
+interface QuestionEditorProps extends BoxProps {
+  title: string; 
+  updatedQuestion: string; 
+  setUpdatedQuestion: React.Dispatch<React.SetStateAction<string>>; 
+  updatedOptions: Array<string>; 
+  setUpdatedOptions: React.Dispatch<React.SetStateAction<Array<string>>>;
+  updatedSolution: Array<string>; 
+  setUpdatedSolution: React.Dispatch<React.SetStateAction<Array<string>>>; 
+  updatedExplanation: string; 
+  setUpdatedExplanation: React.Dispatch<React.SetStateAction<string>>;
+  updatedReferences: Array<string>; 
+  setUpdatedReferences: React.Dispatch<React.SetStateAction<Array<string>>>; 
+  isOpen?: boolean; 
+  onClose?: () => void; 
+}
+
+const QuestionEditor = ({ 
+  title, 
+  updatedQuestion, 
+  setUpdatedQuestion,
+  updatedOptions, 
+  setUpdatedOptions,
+  updatedSolution, 
+  setUpdatedSolution, 
+  updatedExplanation,
+  setUpdatedExplanation,
+  updatedReferences,
+  setUpdatedReferences, 
+  isOpen, 
+  onClose 
+}: QuestionEditorProps) => {
+
+  const [editQuestion, setEditQuestion] = useState(updatedQuestion)
+  const [editOptions, setEditOptions] = useState(updatedOptions)
+  const [editSolution, setEditSolution] = useState(updatedSolution)
+  const [editExplantion, setEditExplanation] = useState(updatedExplanation)
+  const [editReferences, setEditReferences] = useState(updatedReferences)
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent minWidth={{base: '100%', lg: '5xl'}}>
+        <ModalHeader>{title}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <VStack spacing={4} alignItems='start'>
+            <Text fontWeight='semibold'>
+                Question
+            </Text>
+            <AutoResizeTextarea 
+              value={editQuestion}
+              onChange={(event) => {
+                setEditQuestion(event.target.value)
+              }}
+            >
+            </AutoResizeTextarea>
+            <Text fontWeight='semibold'>
+                Options
+            </Text>
+            { editOptions.map((_option: string, index: number) => (
+              <AutoResizeTextarea key={index} value={editOptions[index]} onChange={(event) => {
+                let newOptions = [... editOptions]
+                newOptions[index] = event.target.value 
+                setEditOptions(newOptions)
+              }}></AutoResizeTextarea>
+            )) }
+            <Text fontWeight='semibold'>
+                Solution
+            </Text>
+            <Input 
+              value={editSolution.join(',')}
+              onChange={(event) => {
+                let newSolution = [...editSolution]
+                newSolution = event.target.value.trim().split(',')
+                setEditSolution(newSolution)
+              }}
+            >
+            </Input>
+            <Text fontWeight='semibold'>
+                Explanation
+            </Text>
+            <AutoResizeTextarea
+              value={editExplantion}
+              onChange={(event) => {
+                setEditExplanation(event.target.value)
+              }}
+            >
+            </AutoResizeTextarea>
+            <Text fontWeight='semibold'>
+              References
+            </Text>
+            { editReferences.map((ref: string, index: number) => (
+              <AutoResizeTextarea 
+                value={ref} 
+                key={index}
+                onChange={(event) => {
+                  let newReferences = [... editReferences]
+                  newReferences[index] = event.target.value
+                  setEditReferences(newReferences)
+                }}
+              >
+              </AutoResizeTextarea>
+            )) }
+          </VStack>
+        </ModalBody>
+        <ModalFooter>
+          <Button 
+            variant='ghost'
+            colorScheme='blue' 
+            mr={3} 
+            onClick={onClose}
+          >
+              Close
+          </Button>
+          <Button 
+            variant='ghost'
+            colorScheme='pink'
+            onClick={() => {
+              UpdateQuestion(title, editQuestion, editOptions, editSolution, editExplantion, editReferences)
+              setUpdatedQuestion(editQuestion)
+              setUpdatedOptions(editOptions)
+              setUpdatedSolution(editSolution)
+              setUpdatedExplanation(editExplantion)
+              setUpdatedReferences(editReferences)
+              onClose()
+            }}
+          >
+              Save
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  ); 
+}
+
 interface QuestionAnswerBoxProps extends FlexProps {
   title: string;
   question: string; 
@@ -117,7 +254,13 @@ const QuestionAnswerBox = ({
   references
 } : QuestionAnswerBoxProps) => {
   const {isOpen, onToggle} = useDisclosure()
-  const {isOpen: isModal, onOpen: onModelOpen, onClose: onModelClose} = useDisclosure()
+  const {isOpen: isModal, onOpen: onModalOpen, onClose: onModalClose} = useDisclosure()
+  const [updatedQuestion, setUpdatedQuestion] = useState(question)
+  const [updatedExplanation, setUpdatedExplanation] = useState(explanation)
+  const [updatedOptions, setUpdatedOptions] = useState(options)
+  const [updatedSolution, setUpdatedSolution] = useState(solution)
+  const [updatedReferences, setUpdatedReferences] = useState(references)
+
   return (
     <Box 
       maxW='5xl' 
@@ -129,17 +272,17 @@ const QuestionAnswerBox = ({
     >
       <Question 
         title={title} 
-        options={options} 
-        question={question}
+        options={updatedOptions} 
+        question={updatedQuestion}
       > 
       </Question>
       <Box height={4} />
-      <Box display={isOpen ? 'flex': 'none'}>
+      <Box display={isOpen ? 'block': 'none'}>
         <Explanation
           title='Solution'
-          solution={solution}
-          references={references}
-          explanation={explanation}
+          solution={updatedSolution}
+          references={updatedReferences}
+          explanation={updatedExplanation}
         >
         </Explanation>
       </Box>
@@ -155,60 +298,27 @@ const QuestionAnswerBox = ({
         <Button
           colorScheme='pink'
           minWidth={40}
-          onClick={onModelOpen}
+          onClick={onModalOpen}
         >
           Edit
         </Button>
       </HStack>
-      <Modal isOpen={isModal} onClose={onModelClose}>
-        <ModalOverlay />
-        <ModalContent minWidth={{base: '100%', lg: '5xl'}}>
-          <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <VStack spacing={4} alignItems='start'>
-              <Text fontWeight='semibold'>
-                Question
-              </Text>
-              <Textarea>
-                {question}
-              </Textarea>
-              <Text fontWeight='semibold'>
-                Options
-              </Text>
-              {options.map((option, index) => (
-                <Input key={index} placeholder={option}></Input>
-              ))}
-              <Text fontWeight='semibold'>
-                Solution
-              </Text>
-              <Input placeholder={solution.join(', ')}></Input>
-              <Text fontWeight='semibold'>
-                Explanation
-              </Text>
-              <Textarea>
-                {explanation}
-              </Textarea>
-            </VStack>
-          </ModalBody>
-          <ModalFooter>
-            <Button 
-              variant='ghost'
-              colorScheme='blue' 
-              mr={3} 
-              onClick={onModelClose}
-            >
-              Close
-            </Button>
-            <Button 
-              variant='ghost'
-              colorScheme='pink'
-            >
-              Save
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <QuestionEditor
+        title={title}
+        updatedQuestion={updatedQuestion}
+        setUpdatedQuestion={setUpdatedQuestion}
+        updatedOptions={updatedOptions}
+        setUpdatedOptions={setUpdatedOptions}
+        updatedSolution={updatedSolution}
+        setUpdatedSolution={setUpdatedSolution}
+        updatedExplanation={updatedExplanation}
+        setUpdatedExplanation={setUpdatedExplanation}
+        updatedReferences={updatedReferences}
+        setUpdatedReferences={setUpdatedReferences}
+        isOpen={isModal}
+        onClose={onModalClose}
+      >
+      </QuestionEditor>
     </Box>
   );
 }
@@ -216,7 +326,6 @@ const QuestionAnswerBox = ({
 
 const TestQuestion = () => {
   const [questions, setQuestions] = useState([])
-
   const fetchJsonFromLocal = async (file: string) => {
     console.log('fetch json from local, ', file);
     let content = null;
@@ -227,15 +336,11 @@ const TestQuestion = () => {
       });
     return content;
   };
-
   const fetchData = async () => {
     const res = await fetchJsonFromLocal('')
     setQuestions(res)
   }
-
-
   useEffect(() => {fetchData()}, [])
-
   return (
     <Box width='100%' height='100vh'>
       {questions && questions.map((question:any, index:Key) => {
