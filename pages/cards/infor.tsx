@@ -36,12 +36,12 @@ const Property = (props: Props) => {
   )
 }
 
-interface Props {
+interface CardHeaderProps {
   title: string
   action?: React.ReactNode
 }
 
-const CardHeader = (props: Props) => {
+const CardHeader = (props: CardHeaderProps) => {
   const { title, action } = props
   return (
     <Flex align="center" justify="space-between" px="6" py="4" borderBottomWidth="1px">
