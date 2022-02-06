@@ -15,7 +15,8 @@ const Nav = () => {
     <Box
       position='absolute'
       left={0}
-      width='100%'
+      width='100vw'
+      maxWidth='100%'
       height={59}
       bg='tomato'
       zIndex={1}

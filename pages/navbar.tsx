@@ -19,8 +19,10 @@ import { Input,
   Button,
   InputGroup,
   InputLeftElement,
-  useColorModeValue} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, SearchIcon, MoonIcon, SunIcon} from '@chakra-ui/icons';
+  useColorModeValue,
+  Icon,
+  Collapse} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon, SearchIcon, ChevronDownIcon, MoonIcon, SunIcon} from '@chakra-ui/icons';
 
 
 const _NavLink = ( { children } : { children: ReactNode }) => {
@@ -49,7 +51,9 @@ const NavItem = ( { children } : { children: ReactNode }) => {
 const Navbar = () => {
 
   const { colorMode, toggleColorMode } = useColorMode()
-  const {isOpen, onOpen, onClose} = useDisclosure();  
+  const {isOpen: isOpenMenu, onOpen: onOpenMenu, onClose: onCloseMenu} = useDisclosure();
+  const { isOpen: isOpenDomain, onToggle: onToggleDomain } = useDisclosure(); 
+
   return (
     <Box 
       width='100%' 
@@ -63,9 +67,9 @@ const Navbar = () => {
             <IconButton
               display={{ md: 'none' }}
               size={'lg'}
-              icon={ isOpen ? <CloseIcon></CloseIcon> : <HamburgerIcon></HamburgerIcon>}
+              icon={ isOpenMenu ? <CloseIcon></CloseIcon> : <HamburgerIcon></HamburgerIcon>}
               aria-label='Open Menu'
-              onClick={isOpen ? onClose : onOpen}
+              onClick={isOpenMenu ? onCloseMenu : onOpenMenu}
             >
             </IconButton>
             <HStack spacing={2} alignItems='center' flex={'1'}>
@@ -122,7 +126,7 @@ const Navbar = () => {
               </Menu>
             </HStack>
           </Flex>
-          {isOpen ? (
+          {isOpenMenu ? (
             <Box pb={4} display={{ md: 'none' }}>
               <Stack>
                 {['Dashboard','Projects','Team'].map((name,index)=>{
@@ -142,6 +146,36 @@ const Navbar = () => {
                     </Flex>
                   )
                 })}
+                <Stack onClick={onToggleDomain}>
+                  <Flex
+                    as={Link}
+                    justify={'space-between'}
+                    align={'center'}
+                    _hover={{textDecoration: 'none'}}
+                  >
+                    <Text 
+                      fontWeight={600} 
+                      color={useColorModeValue('gray.600', 'gray.200')}>
+                      Domain
+                    </Text>
+                    <Icon
+                      as={ChevronDownIcon}
+                      w={6}
+                      h={6}
+                    >
+                    </Icon>
+                  </Flex>
+                  <Collapse in={isOpenDomain}>
+                    <Stack>
+                      <Link>
+                        Security
+                      </Link>
+                      <Link>
+                        Storage
+                      </Link>
+                    </Stack>
+                  </Collapse>
+                </Stack>
               </Stack>
             </Box>
           ) : null}
