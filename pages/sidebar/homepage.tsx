@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 
 const Navbar = () => {
   return (
@@ -39,32 +39,51 @@ const Sidebar = () => {
   )
 }
 
+const Layout = ({ children }) => {
+  return (
+    <Flex direction={'row'} bg={'orange.100'}>
+      <Flex
+        height={'100vh'}
+        bg={'teal.100'}
+        width={'60'}
+        display={{ base: 'none', md: 'block' }}
+        marginTop={'16'}
+        px={'4'}
+        position={'fixed'}
+      >
+        <Text>Home</Text>
+      </Flex>
+      <Flex
+        width={'100%'}
+        // bg={'gray.200'}
+        mt={'16'}
+        justifyContent={'center'}
+        ml={{ base: '0', md: '60' }}
+      >
+        <Flex maxW={'800px'}>{children}</Flex>
+      </Flex>
+    </Flex>
+  )
+}
+
 const HomePage = () => {
   return (
-    <Box bg={'gray.100'} height={'100vh'}>
+    <Box height={'100vh'}>
       <Navbar></Navbar>
-      <Sidebar></Sidebar>
-      <Flex
-        marginTop={'16'}
-        marginLeft={{ base: 'none', md: '60' }}
-        bg={'teal.400'}
-        position={'fixed'}
-        justifyContent={'center'}
-        align={'center'}
-        width={'100%'}
-      >
-        <Flex maxW={'800px'} bg={'orange.100'}>
-          <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
-            rem! Aperiam omnis similique accusamus accusantium dolore,
-            perferendis eveniet hic laboriosam itaque unde necessitatibus dicta
-            facere quae ratione cumque velit nostrum. Lorem, ipsum dolor sit
-            amet consectetur adipisicing elit. Iure eius assumenda, aperiam
-            explicabo perferendis voluptatum quos ea enim, natus quidem numquam
-            obcaecati, harum velit molestiae sed hic maiores beatae cumque!
-          </Text>
-        </Flex>
-      </Flex>
+      <Layout>
+        <Text>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad, magnam
+          dolores amet tempore maiores modi est earum eveniet ex adipisci
+          praesentium assumenda nobis ut, voluptate numquam aspernatur, debitis
+          quos error? Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Nesciunt, at voluptate praesentium itaque id architecto neque vel
+          officiis distinctio mollitia ducimus, ab iste sit, eos consectetur
+          temporibus soluta sint? At. Lorem ipsum dolor, sit amet consectetur
+          adipisicing elit. Expedita esse, officia inventore ad eos magni est
+          deleniti placeat dignissimos, totam nihil beatae consequatur odio
+          quos, quia nemo laborum nesciunt doloribus.
+        </Text>
+      </Layout>
     </Box>
   )
 }
