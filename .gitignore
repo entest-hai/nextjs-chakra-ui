@@ -44,3 +44,7 @@ amplifytools.xcconfig
 .secret-*
 #amplify-do-not-edit-end
 amplify/.config/project-config.json
+
+
+# Contentlayer
+.contentlayer
