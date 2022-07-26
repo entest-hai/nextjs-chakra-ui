@@ -1,6 +1,6 @@
 import { Button, ButtonProps, useClipboard } from '@chakra-ui/react'
 import React from 'react'
-import { t } from './../../../utils/i18n'
+import { t } from 'utils/i18n'
 
 interface CopyButtonProps extends ButtonProps {
   code: string

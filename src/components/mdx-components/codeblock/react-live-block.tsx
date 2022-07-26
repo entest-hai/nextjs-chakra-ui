@@ -5,7 +5,7 @@ import CodeContainer from './code-container'
 import CopyButton from './copy-button'
 import scope from './react-live-scope'
 import { liveEditorStyle, liveErrorStyle } from './styles'
-import { t } from './../../../utils/i18n'
+import { t } from 'utils/i18n'
 
 const LiveCodePreview = chakra(LivePreview, {
   baseStyle: {

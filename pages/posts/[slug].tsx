@@ -1,5 +1,4 @@
 import { allPosts } from '.contentlayer/generated'
-import { Heading } from '@chakra-ui/react'
 import type { GetStaticProps } from 'next'
 import Layout from './../../layouts/index'
 import { useMDXComponent } from 'next-contentlayer/hooks'
@@ -20,7 +19,7 @@ const MyPost = ({ post }) => {
   const MDXContent = useMDXComponent(post.body.code)
 
   return (
-    <Layout>
+    <Layout frontMatter={post?.frontMatter}>
       <MDXContent components={MDXComponents}></MDXContent>
     </Layout>
   )

@@ -15,10 +15,10 @@ export const InlineCode = (props: HTMLChakraProps<'code'>) => {
 
   return (
     <chakra.code
-      apply="mdx.code"
+      apply='mdx.code'
       color={'purple.500'}
       _dark={{
-        color: 'purple.200'
+        color: 'purple.200',
       }}
       ref={codeRef}
       whiteSpace={shouldWrap ? undefined : 'nowrap'}

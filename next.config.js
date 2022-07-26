@@ -1,10 +1,13 @@
 const { withContentlayer } = require('next-contentlayer')
 
 const nextConfig = {
-  reactStrictMode: true,
-  experimental: {
-    optimizeFonts: true,
-    modern: true
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  typescript: {
+    ignoreBuildErrors: true
+  },
+
+  eslint: {
+    ignoreDuringBuilds: true
   }
 }
 
