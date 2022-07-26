@@ -5,7 +5,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -23,43 +23,43 @@ import {
   RiNavigationFill,
   RiPaletteLine,
   RiPictureInPictureExitFill,
-  RiRepeat2Fill,
+  RiRepeat2Fill
 } from 'react-icons/ri'
-import componentsSidebar from 'configs/components-sidebar'
-import styledSystemSidebar from 'configs/styled-system-sidebar.json'
+import componentsSidebar from './../../configs/components.sidebar.json'
+import styledSystemSidebar from './../../configs/styled-system.sidebar.json'
 
 const featureSidebar = {
   '/docs/styled-system/overview': styledSystemSidebar,
-  '/docs/components/overview': componentsSidebar,
+  '/docs/components/overview': componentsSidebar
 }
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
     <Stack
-      direction='row'
+      direction="row"
       bg={useColorModeValue('white', 'gray.700')}
-      rounded='12px'
-      shadow='base'
+      rounded="12px"
+      shadow="base"
       spacing={4}
-      p='6'
-      cursor='pointer'
+      p="6"
+      cursor="pointer"
       {...props}
     >
       <Flex
-        rounded='12px'
-        w='12'
-        h='12'
-        bg='teal.500'
-        align='center'
-        justify='center'
+        rounded="12px"
+        w="12"
+        h="12"
+        bg="teal.500"
+        align="center"
+        justify="center"
       >
-        <Icon fontSize='24px' color='white' as={icon} />
+        <Icon fontSize="24px" color="white" as={icon} />
       </Flex>
-      <Flex direction='column'>
-        <Heading as='h3' size='sm' fontWeight='semibold' mt='1' mb='0.5'>
+      <Flex direction="column">
+        <Heading as="h3" size="sm" fontWeight="semibold" mt="1" mb="0.5">
           {title}
         </Heading>
-        <Text fontSize='md' opacity={0.7}>
+        <Text fontSize="md" opacity={0.7}>
           {children}
         </Text>
       </Flex>
@@ -71,7 +71,7 @@ export const FeaturesOverview = () => {
   const { asPath } = useRouter()
 
   const features = featureSidebar[asPath].routes[0].routes.filter(
-    (feature) => feature.path !== asPath,
+    feature => feature.path !== asPath
   )
 
   const changeFeatureText = (path: string) => {
@@ -100,12 +100,12 @@ export const FeaturesOverview = () => {
     Disclosure: RiEyeCloseLine,
     Navigation: RiNavigationFill,
     'Media and icons': RiImage2Fill,
-    Other: RiArchiveFill,
+    Other: RiArchiveFill
   }
 
   return (
-    <SimpleGrid mt='12' minChildWidth='15.625rem' spacing='8'>
-      {features.map((feature) => (
+    <SimpleGrid mt="12" minChildWidth="15.625rem" spacing="8">
+      {features.map(feature => (
         <Link
           key={feature.title}
           passHref

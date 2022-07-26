@@ -8,7 +8,7 @@ import siteConfig from './configs/site-config.json'
 
 const Post = defineDocumentType(() => ({
   name: 'Post',
-  filePathPattern: '**/*.mdx',
+  filePathPattern: 'amplify/*.mdx',
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
@@ -20,15 +20,13 @@ const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: post => `/posts/${post._raw.flattenedPath}`
+      resolve: post => `/${post._raw.flattenedPath}`
     },
     frontMatter: {
       type: 'json',
       resolve: post => ({
         title: post.title,
-        // package: post.package,
-        // description: post.description,
-        // version: post.version,
+        description: post.description,
         slug: `/${post._raw.flattenedPath}`,
         editUrl: `${siteConfig.repo.editUrl}/${post._id}`,
         headings: getTableOfContents(post.body.raw)
@@ -37,9 +35,38 @@ const Post = defineDocumentType(() => ({
   }
 }))
 
+const Cdk = defineDocumentType(() => ({
+  name: 'Cdk',
+  filePathPattern: 'cdk/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    author: { type: 'string' },
+    publishedDate: { type: 'string' },
+    description: { type: 'string' }
+  },
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: cdk => `/${cdk._raw.flattenedPath}`
+    },
+    frontMatter: {
+      type: 'json',
+      resolve: cdk => ({
+        title: cdk.title,
+        description: cdk.description,
+        slug: `/${cdk._raw.flattenedPath}`,
+        editUrl: `${siteConfig.repo.editUrl}/${cdk._id}`,
+        headings: getTableOfContents(cdk.body.raw)
+      })
+    }
+  }
+}))
+
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Post],
+  documentTypes: [Post, Cdk],
   mdx: {
     rehypePlugins: [rehypeMdxCodeMeta],
     remarkPlugins: [remarkSlug, remarkGfm, remarkEmoji]

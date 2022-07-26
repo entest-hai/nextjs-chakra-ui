@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "dev": "next dev -p 3000",
-    "build": "next build && export",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
     "cache:clean": "rm -rf .next .contentlayer"

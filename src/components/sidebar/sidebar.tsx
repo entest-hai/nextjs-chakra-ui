@@ -15,13 +15,27 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { SidebarLink } from './sidebar-link'
 import { BsFillGridFill } from 'react-icons/bs'
+import { cdkComponents } from 'data/links'
 
 export type SidebarContentProps = {
   pathname?: string
   contentRef?: any
 }
 
-const routes = [...Array(10).keys()]
+const topics = [
+  {
+    name: 'CDK',
+    posts: cdkComponents
+  },
+  {
+    name: 'Amplify',
+    posts: []
+  },
+  {
+    name: 'SageMaker',
+    posts: []
+  }
+]
 
 export const SidebarContent = ({
   pathname,
@@ -29,9 +43,9 @@ export const SidebarContent = ({
 }: SidebarContentProps) => {
   return (
     <>
-      {routes.map(item => {
+      {topics.map(item => {
         return (
-          <Fragment key={item}>
+          <Fragment key={item.name}>
             <chakra.h4
               fontSize="sm"
               fontWeight="bold"
@@ -39,17 +53,17 @@ export const SidebarContent = ({
               textTransform="uppercase"
               letterSpacing="wider"
             >
-              {item} - Layer 1
+              {item.name}
             </chakra.h4>
-            {routes.map(item => {
+            {item.posts.map(item => {
               return (
                 <SidebarLink
-                  key={item.toString()}
-                  href={'#'}
+                  key={item.label}
+                  href={item.href}
                   ml={'-3'}
                   mt={'2'}
                 >
-                  {item}
+                  {item.label}
                 </SidebarLink>
               )
             })}
@@ -63,18 +77,18 @@ export const SidebarContent = ({
 export const mainNavLinks = [
   {
     icon: <FaCompass></FaCompass>,
-    href: '/getting-started',
+    href: '/cdk/getting-started',
     label: 'Getting Started'
   },
   {
     icon: <FaPalette></FaPalette>,
-    href: '/sample-applications',
-    label: 'Styled System'
+    href: '/cdk/getting-started',
+    label: 'Sample Applications'
   },
   {
     icon: <BsFillGridFill></BsFillGridFill>,
-    href: '/posts/introduction',
-    label: 'Components',
+    href: '/',
+    label: 'Amplify UI',
     match: (asPath: string, href: string) =>
       href.startsWith('/posts/') && asPath.startsWith('/posts/')
   }

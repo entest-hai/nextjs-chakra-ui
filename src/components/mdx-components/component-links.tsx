@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { FaGithub, FaNpm, FaYoutube } from 'react-icons/fa'
-// import StorybookIcon from '../storybook-icon'
+import StorybookIcon from '../storybook-icon'
 import { t } from 'utils/i18n'
 
 type ComponentLinkProps = LinkProps & {
@@ -93,14 +93,14 @@ function ComponentLinks(props: ComponentLinksProps) {
 
   const storybookLink = storybook?.url && (
     <WrapItem>
-      {/* <ComponentLink
+      <ComponentLink
         url={storybook.url}
         icon={StorybookIcon}
-        iconSize='1.25rem'
-        iconColor='pink.500'
+        iconSize="1.25rem"
+        iconColor="pink.500"
       >
         {t('component.mdx-components.component-links.view-storybook')}
-      </ComponentLink> */}
+      </ComponentLink>
     </WrapItem>
   )
 
