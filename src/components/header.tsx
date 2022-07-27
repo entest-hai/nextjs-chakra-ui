@@ -16,13 +16,21 @@ import {
 import NextLink from 'next/link'
 import React, { useRef, useState } from 'react'
 import { DiscordIcon, GithubIcon } from './icons'
-import { FaYoutube, FaMoon, FaSun } from 'react-icons/fa'
+import {
+  FaYoutube,
+  FaMoon,
+  FaSun,
+  FaTwitter,
+  FaLinkedinIn
+} from 'react-icons/fa'
 import Logo, { LogoIcon } from './logo'
 import Search from './omni-search'
 import SponsorButton from './sponsor-button'
 import { MobileNavButton, MobileNavContent } from './mobile-nav'
 import { useViewportScroll } from 'framer-motion'
 import { useEffect } from 'react'
+import { EntestLogo } from 'components/entest-logo'
+import siteConfig from 'configs/site-config.json'
 
 const NavbarContent = () => {
   const mobileNav = useDisclosure()
@@ -46,15 +54,22 @@ const NavbarContent = () => {
         justifyContent={'space-between'}
         px={'6'}
       >
-        <Flex align={'center'}>
-          <NextLink href={'/'} passHref>
-            <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
+        <Flex
+          align={'center'}
+          // bg={'green.200'}
+          minW={'4rem'}
+          width={'auto'}
+          mr={'5'}
+        >
+          {/* <NextLink href={'/'} passHref> */}
+          {/* <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
               <Logo display={{ base: 'none', md: 'block' }} />
               <Box minW="3rem" display={{ base: 'block', md: 'none' }}>
                 <LogoIcon />
               </Box>
-            </chakra.a>
-          </NextLink>
+            </chakra.a> */}
+          <EntestLogo></EntestLogo>
+          {/* </NextLink> */}
         </Flex>
         <Flex
           align={'center'}
@@ -71,10 +86,10 @@ const NavbarContent = () => {
             display={{ base: 'none', md: 'flex' }}
             pr={'5'}
           >
-            Version Switcher
+            Version
           </Text>
           <HStack spacing={'5'} display={{ base: 'none', md: 'flex' }}>
-            <Link isExternal href="#" aria-label="github">
+            <Link isExternal href={siteConfig.repo.url} aria-label="github">
               <Icon
                 as={GithubIcon}
                 display={'block'}
@@ -84,9 +99,9 @@ const NavbarContent = () => {
                 _hover={{ color: 'gray.600' }}
               ></Icon>
             </Link>
-            <Link isExternal href="#" aria-label="discord">
+            <Link isExternal href={siteConfig.youtube} aria-label="discord">
               <Icon
-                as={DiscordIcon}
+                as={FaYoutube}
                 display={'block'}
                 transition="color 0.2s"
                 w="5"
@@ -94,9 +109,9 @@ const NavbarContent = () => {
                 _hover={{ color: 'gray.600' }}
               ></Icon>
             </Link>
-            <Link isExternal href="#" aria-label="youtube">
+            <Link isExternal href={siteConfig.linkedin} aria-label="youtube">
               <Icon
-                as={FaYoutube}
+                as={FaLinkedinIn}
                 display={'block'}
                 transition="color 0.2s"
                 w="5"

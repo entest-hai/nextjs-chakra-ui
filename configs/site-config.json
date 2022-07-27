@@ -1,19 +1,19 @@
 {
-  "copyright": "Copyright © {{date}} Segun Adebayo. All Rights Reserved.",
+  "copyright": "Copyright © {{date}} Hai Tran. All Rights Reserved.",
   "algolia": {
     "apiKey": "df1dcc41f7b8e5d68e73dd56d1e19701",
     "indexName": "chakra-ui",
     "inputSelector": "#algolia-search"
   },
   "author": {
-    "name": "Segun Adebayo",
-    "github": "https://github.com/segunadebayo",
-    "twitter": "https://twitter.com/thesegunadebayo",
-    "linkedin": "https://linkedin.com/in/thesegunadebayo",
-    "email": "sage@adebayosegun.com"
+    "name": "haimtran",
+    "github": "https://github.com/entest-hai",
+    "twitter": "https://twitter.com/TranHaiMinh",
+    "linkedin": "https://www.linkedin.com/in/minhhaitran/",
+    "email": "hai@entest.io"
   },
   "repo": {
-    "url": "https://github.com/chakra-ui/chakra-ui",
+    "url": "https://github.com/entest-hai",
     "editUrl": "https://github.com/chakra-ui/chakra-ui-docs/tree/main/content",
     "blobUrl": "https://github.com/chakra-ui/chakra-ui/blob/main"
   },
@@ -23,12 +23,13 @@
   "discord": {
     "url": "https://discord.gg/chakra-ui"
   },
-  "youtube": "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
+  "youtube": "https://www.youtube.com/channel/UC6Ouwki3SqNoCz9_6QQzzXg",
+  "linkedin": "https://www.linkedin.com/in/minhhaitran/",
   "seo": {
-    "title": "Chakra UI",
-    "titleTemplate": "%s - Chakra UI",
+    "title": "CDK Entest",
+    "titleTemplate": "%s - CDK Entest",
     "description": "Simple, Modular and Accessible UI Components for your React Applications.",
-    "siteUrl": "https://chakra-ui.com",
+    "siteUrl": "https://cdk.entest.io/",
     "twitter": {
       "handle": "@chakra-ui",
       "site": "@chakra-ui",
@@ -37,22 +38,22 @@
     "openGraph": {
       "type": "website",
       "locale": "en_US",
-      "url": "https://chakra-ui.com",
-      "title": "Chakra UI",
+      "url": "https://cdk.entest.io/",
+      "title": "CDK Entest",
       "description": "Simple, Modular and Accessible UI Components for your React Applications.",
-      "site_name": "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
+      "site_name": "CDK Entest: Simple, Modular and Accessible UI Components for your React Applications.",
       "images": [
         {
-          "url": "https://chakra-ui.com/og-image.png",
+          "url": "https://cdk.entest.io/",
           "width": 1240,
           "height": 480,
-          "alt": "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications."
+          "alt": "CDK Entest: Simple, Modular and Accessible UI Components for your React Applications."
         },
         {
-          "url": "https://chakra-ui.com/twitter-og-image.png",
+          "url": "https://cdk.entest.io/",
           "width": 1012,
           "height": 506,
-          "alt": "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications."
+          "alt": "CDK Entest: Simple, Modular and Accessible UI Components for your React Applications."
         }
       ]
     }
