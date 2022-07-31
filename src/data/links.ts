@@ -1,6 +1,5 @@
 import {
   MdFormatSize,
-  MdOutlineCheckBox,
   MdTextFormat,
   MdOutlineImage,
   MdInsertEmoticon,
@@ -12,8 +11,6 @@ import {
   MdWarning,
   MdNotes,
   MdInput,
-  MdArrowDropDown,
-  MdArrowDropDownCircle,
   MdAddBox,
   MdSearch,
   MdPassword,
@@ -28,7 +25,6 @@ import {
   MdExpand,
   MdTableChart,
   MdMoreHoriz,
-  MdHideSource,
   MdLink,
   MdMenu,
   MdTab,
@@ -37,7 +33,6 @@ import {
   MdDisabledVisible,
   MdRefresh,
   MdTune,
-  MdSystemUpdate,
   MdSystemUpdateAlt,
   MdCheckCircle
 } from 'react-icons/md'
@@ -54,72 +49,18 @@ const sortByLabel = (a: ComponentNavItem, b: ComponentNavItem) =>
 
 export const sagemakerComponents: ComponentNavItem[] = [
   {
-    href: '/sagemaker/endpoint',
-    label: 'Sagemaker Endpoint',
-    body: `Hello Sagemaker endpoint`,
+    href: '/sagemaker/pipeline',
+    label: 'SageMaker Pipeline',
+    body: 'Build a simple ML pipeline with sagemaker pipeline and codepipeline',
     platforms: ['react']
   }
 ].sort(sortByLabel)
 
 export const amplifyComponents: ComponentNavItem[] = [
   {
-    href: '/amplify/scss',
-    label: 'Hello SCSS',
-    body: `Hello Style SCSS`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/theme',
-    label: 'Amplify Theme',
-    body: `Hello Amplify Theme`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/mdx',
-    label: 'Hello MDX',
-    body: `Hello MDX Markdown`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/geo',
-    label: 'Hello Amplify Geo',
-    body: `Hello Amplify Geo`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/auth',
-    label: 'Hello Amplify Auth',
-    body: `Hello Amplify Authentication`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/graphql',
-    label: 'Hello Amplify GraphQL',
-    body: `Hello Amplify Theme`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/pubsub',
-    label: 'Hello Amplify PubSub',
-    body: `Hello Amplify PubSub`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/cognito-hosted-ui',
-    label: 'Cognito Hosted UI',
-    body: `Cognito hosted UI authentication`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/cognito-admin',
-    label: 'Cognito Admin Role',
-    body: `Cognito react admin`,
-    platforms: ['react']
-  },
-  {
-    href: '/amplify/cognito-role-rule',
-    label: 'Cognito Role Based',
-    body: `Cognito fine-granied role based access grant`,
+    href: '/amplify/aws-sdk-js-browser',
+    label: 'Upload to S3 from Browser using AWS-SDK-JS',
+    body: 'Upload to S3 from Browser using AWS-SDK-JS',
     platforms: ['react']
   }
 ].sort(sortByLabel)
@@ -303,6 +244,24 @@ export const cdkComponents: ComponentNavItem[] = [
     href: '/cdk/cicd-integration-test',
     label: 'CI/CD Pipeline with Integration Test',
     body: 'CI/CD Pipeline with Integration Test',
+    platforms: ['react']
+  },
+  {
+    href: '/cdk/apigw-auth-cognito',
+    label: 'Api Gateway Auth with Cogntio JWT and Lambda',
+    body: 'Api Gateway Auth with Cogntio JWT and Lambda',
+    platforms: ['react']
+  },
+  {
+    href: '/cdk/eventbridge-lambda',
+    label: 'EventBridge with Lambda Producer and Consumer ',
+    body: 'EventBridge with Lambda Producer and Consumer ',
+    platforms: ['react']
+  },
+  {
+    href: '/cdk/stepfunctions-getting-started',
+    label: 'Getting Started with Stepfunctions',
+    body: 'Getting Started with Stepfunctions',
     platforms: ['react']
   }
 ].sort(sortByLabel)

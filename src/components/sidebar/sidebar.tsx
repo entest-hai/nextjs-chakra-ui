@@ -15,7 +15,11 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { SidebarLink } from './sidebar-link'
 import { BsFillGridFill } from 'react-icons/bs'
-import { cdkComponents } from 'data/links'
+import {
+  amplifyComponents,
+  cdkComponents,
+  sagemakerComponents
+} from 'data/links'
 
 export type SidebarContentProps = {
   pathname?: string
@@ -29,11 +33,11 @@ const topics = [
   },
   {
     name: 'Amplify',
-    posts: []
+    posts: amplifyComponents
   },
   {
     name: 'SageMaker',
-    posts: []
+    posts: sagemakerComponents
   }
 ]
 
@@ -78,19 +82,23 @@ export const mainNavLinks = [
   {
     icon: <FaCompass></FaCompass>,
     href: '/cdk/getting-started',
-    label: 'Getting Started'
+    label: 'CDK',
+    match: (asPath: string, href: string) =>
+      href.startsWith('/cdk') && asPath.startsWith('/cdk')
   },
   {
     icon: <FaPalette></FaPalette>,
-    href: '/cdk/getting-started',
-    label: 'Sample Applications'
+    href: '/sagemaker/pipeline',
+    label: 'SageMaker',
+    match: (asPath: string, href: string) =>
+      href.startsWith('/sagemaker') && asPath.startsWith('/sagemaker')
   },
   {
     icon: <BsFillGridFill></BsFillGridFill>,
-    href: '/',
-    label: 'Amplify UI',
+    href: '/amplify/aws-sdk-js-browser',
+    label: 'Amplify',
     match: (asPath: string, href: string) =>
-      href.startsWith('/posts/') && asPath.startsWith('/posts/')
+      href.startsWith('/amplify') && asPath.startsWith('/amplify')
   }
 ]
 
